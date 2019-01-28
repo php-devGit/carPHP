@@ -4,6 +4,6 @@ class Main
 {
     function getPage()
     {
-        echo 'Class Main';
+        include(dirname(__FILE__) . '\..\views\main.php');
     }
 }

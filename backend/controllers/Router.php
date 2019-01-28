@@ -1,15 +1,56 @@
 <?php
+
 require_once 'ErrorController.php';
 
 class Router
 {
 
-    static function start()
+    // Роутинг по средством выбора между ресурсами и контроллерами
+    static function requestHandler()
+    {
+        $routes = explode('/', $_SERVER['REQUEST_URI']);
+        if ($routes[1] == "public" && ($routes[2] == "css" || $routes[2] == "js" || $routes[2] == "images")) {
+            self::sourceHandler($routes);
+        } else {
+            self::controllerHandler($routes);
+        }
+    }
+
+    // Роутинг для получения стилей, JS-файлов, картинок (ресурсов)
+    static function sourceHandler($routes)
+    {
+        $requestPath = '';
+        $extFile = '';
+
+        foreach ($routes as $value) {
+            $requestPath .= '\\' . $value;
+            switch ($value) {
+                case 'css':
+                    $extFile = 'css';
+                    break;
+                case 'js':
+                    $extFile = 'js';
+                    break;
+                case 'images':
+                    $extFile = 'image';
+                    break;
+            }
+        }
+
+        $sourcePath = dirname(__FILE__) . '\..' . '\views' . '\\' . $requestPath;
+
+        if (file_exists($sourcePath)) {
+            $file = file_get_contents($sourcePath);
+            header('Content-Type: text/' . $extFile);
+            echo $file;
+        }
+    }
+
+    static function controllerHandler($routes)
     {
         // Дефолтный контроолер, действие
         $controller_name = 'Main';
         $action_name = 'getPage';
-        $routes = explode('/', $_SERVER['REQUEST_URI']);
 
         // Если задан роутинг (/index) в URL, то присваиваем, иначе остаётся дефолтный, объявленный выше
         if (!empty($routes[1])) {
@@ -23,7 +64,7 @@ class Router
 
         // Формируем переменную с наименованием файла класса и путь к классу
         $controller_file = $controller_name . '.php';
-        $controller_path = dirname(__FILE__)."\\".$controller_file;
+        $controller_path = dirname(__FILE__) . "\\" . $controller_file;
 
         // Объект класса Error (вызванный из другого метода, в котором инициализуруются поля)
         $errorPageNotFound = getPageNotFound();

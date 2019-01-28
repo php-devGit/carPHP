@@ -1,0 +1,30 @@
+html, body {
+    height: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.bg-header {
+    background-image: url('/public/images/car-header.jpg');
+    background-size: cover;
+}
+
+.logo-text {
+    color: #a34c36;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+.red-text {
+    color: #a34c36;
+}
+
+.bg-light-grey {
+    background: #f0f1f0;
+}

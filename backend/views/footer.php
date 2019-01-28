@@ -1,5 +1,3 @@
-<footer class="py-3 bg-light-grey fixed-bottom">
-    <div class="container">
-        <p class="m-0 text-center text-black-50">&copy; Starcars 2018</p>
-    </div>
-</footer>
+<script src="./public/js/lib/jquery-3.3.1.slim.min.js"></script>
+<script src="./public/js/lib/popper.min.js"></script>
+<script src="./public/js/lib/bootstrap.js"></script>

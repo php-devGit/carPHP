@@ -28,3 +28,19 @@ html, body {
 .bg-light-grey {
     background: #f0f1f0;
 }
+
+.h100 {
+    height: 100vh;
+}
+
+.o-50 {
+    opacity: 0.5;
+}
+
+.o-99 {
+    opacity: 0.99;
+}
+
+.menu {
+    letter-spacing: -0.5px;
+}

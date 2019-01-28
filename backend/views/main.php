@@ -9,19 +9,8 @@
 <body id="page-top">
 
 <?php include 'menu.php' ?>
+<?php include 'slider.php'; ?>
+<?php include 'footer.php'; ?>
 
-<div class="full-height bg-header">
-    <header class="text-white">
-        <div class="container text-center">
-            <h1>Автосервис <span class="red-text">Starcars</span></h1>
-            <p class="lead">Поиск машины стал еще более простым.</p>
-        </div>
-    </header>
-
-    <?php include 'footer.php' ?>
-</div>
-
-<script src="./public/js/lib/jquery-3.3.1.slim.min.js"></script>
-<script src="./public/js/lib/popper.min.js"></script>
 </body>
 </html>

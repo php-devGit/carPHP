@@ -13,22 +13,22 @@
                     <a class="nav-link text-black-50" href="#">Модельный ряд</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-black-50" href="#contact">Сервис</a>
+                    <a class="nav-link text-black-50" href="#">Сервис</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-black-50" href="#contact">История компании</a>
+                    <a class="nav-link text-black-50" href="#">История компании</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-black-50" href="#contact">Контакты</a>
+                    <a class="nav-link text-black-50" href="#">Контакты</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-black-50" href="#contact">Тест драйв</a>
+                    <a class="nav-link text-black-50" href="#">Тест драйв</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-black-50" href="#contact">Схема проезда</a>
+                    <a class="nav-link text-black-50" href="#">Схема проезда</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-black-50" href="#contact">Карта сайта</a>
+                    <a class="nav-link text-black-50" href="#">Карта сайта</a>
                 </li>
             </ul>
         </div>

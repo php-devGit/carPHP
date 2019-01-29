@@ -237,3 +237,12 @@ html, body {
 .old-cost {
     text-decoration: line-through;
 }
+
+.section-title {
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+.title {
+    font-size: 1.2rem;
+}

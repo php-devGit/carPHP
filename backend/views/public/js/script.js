@@ -19,7 +19,7 @@ let menuItems = [
     },
     {"title": "Контакты", "url": "/contacts", "levels": []},
     {"title": "Тест драйв", "url": "/test-drive", "levels": []},
-    {"title": "Карта сайта", "url": "/maps", "levels": []}
+    {"title": "Схема проезда", "url": "/maps", "levels": []}
 ];
 
 let getLink = (title, url) => {

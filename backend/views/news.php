@@ -10,11 +10,11 @@
 
 <?php include 'partial/menu.php' ?>
 
-<div class="container">
+<div class="container p-5">
     <div class="row">
         <div class="col-md-12">
             <div class="section-title">
-                <h2>Новости</h2>
+                <span class="title">Новости и акции</span>
             </div>
         </div>
         <div class="col-md-4">

@@ -6,11 +6,6 @@ html, body {
     height: 100%;
 }
 
-.bg-header {
-    background-image: url('/public/images/car-header.jpg');
-    background-size: cover;
-}
-
 .logo-text {
     color: #a34c36;
     padding-top: 0.3125rem;
@@ -25,8 +20,12 @@ html, body {
     color: #a34c36;
 }
 
-.bg-light-grey {
-    background: #f0f1f0;
+.bg-light-с {
+    background: rgb(252, 255, 234);
+}
+
+.menu-item {
+    color: #343a40 !important;
 }
 
 .h100 {
@@ -43,4 +42,198 @@ html, body {
 
 .menu {
     letter-spacing: -0.5px;
+}
+
+.nav-menu {
+    margin-left: 20px;
+}
+
+.nav-menu li a {
+    position: relative;
+    padding: 7px 0;
+    -webkit-box-shadow: -1px 0 0 0 #eceef2 inset;
+    box-shadow: -1px 0 0 0 #eceef2 inset;
+    -webkit-transition: 0.2s color;
+    transition: 0.2s color;
+}
+
+.nav-menu li:first-child a {
+    border-left: 1px solid #eceef2;
+}
+
+.nav-menu li a:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    -webkit-transition: 0.2s width;
+    transition: 0.2s width;
+}
+
+.nav-menu li.cat-1 *:after {
+    background-color: #4BB92F;
+}
+
+.nav-menu li.cat-2 *:after {
+    background-color: #ff8700;
+}
+
+.nav-menu li.cat-3 *:after {
+    background-color: #0078ff;
+}
+
+.nav-menu li.cat-4 *:after {
+    background-color: #8d00ff;
+}
+
+.nav-menu li a:hover, .nav-menu li a:focus {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.nav-menu li.cat-1 a:hover, .nav-menu li.cat-1 a:focus {
+    color: #4BB92F;
+}
+
+.nav-menu li.cat-2 a:hover, .nav-menu li.cat-2 a:focus {
+    color: #ff8700;
+}
+
+.nav-menu li.cat-3 a:hover, .nav-menu li.cat-3 a:focus {
+    color: #0078ff;
+}
+
+.nav-menu li.cat-4 a:hover, .nav-menu li.cat-4 a:focus {
+    color: #8d00ff;
+}
+
+.post {
+    margin-bottom: 40px;
+}
+
+.post .post-img {
+    display: block;
+    -webkit-transition: 0.2s opacity;
+    transition: 0.2s opacity;
+}
+
+.post .post-img:hover, .post .post-img:focus {
+    opacity: 0.9;
+}
+
+.post .post-img > img {
+    width: 100%;
+}
+
+.post .post-meta {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.post-meta .post-category {
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    font-weight: 600;
+    border-radius: 2px;
+    margin-right: 15px;
+    color: #FFF;
+    background-color: #212631;
+    -webkit-transition: 0.2s opacity;
+    transition: 0.2s opacity;
+}
+
+.post-meta .post-category:hover, .post-meta .post-category:focus {
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+.post-meta .post-category.cat-1 {
+    background-color: #4BB92F;
+}
+
+.post-meta .post-category.cat-2 {
+    background-color: #ff8700;
+}
+
+.post-meta .post-category.cat-3 {
+    background-color: #8d00ff;
+}
+
+.post-meta .post-category.cat-4 {
+    background-color: #0078ff;
+}
+
+.post-meta .post-category.cat-5 {
+    background-color: #ff4d4a;
+}
+
+.post-meta .post-date {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.post .post-title {
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.post-tags li {
+    display: inline-block;
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+.post-tags li a {
+    display: block;
+    color: #fff;
+    background-color: #212631;
+    padding: 3px 10px;
+    font-weight: 600;
+    border-radius: 2px;
+    -webkit-transition: 0.2s opacity;
+    transition: 0.2s opacity;
+}
+
+/*----------------------------*\
+	post thumb
+\*----------------------------*/
+.post.post-thumb {
+    position: relative;
+}
+
+.post.post-thumb .post-img:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(33, 38, 49, 0.3)), to(transparent));
+    background: linear-gradient(to top, rgba(33, 38, 49, 0.3) 0%, transparent 100%);
+}
+
+.post.post-thumb .post-body {
+    position: absolute;
+    bottom: 0;
+    padding: 20px 15px;
+}
+
+.post.post-thumb .post-meta .post-date {
+    color: #eceef2;
+}
+
+.post.post-thumb .post-title {
+    font-size: 22px;
+}
+
+.post.post-thumb .post-title > a {
+    color: #FFF;
+}
+
+.old-cost {
+    text-decoration: line-through;
 }

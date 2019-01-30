@@ -6,6 +6,10 @@ html, body {
     height: 100%;
 }
 
+.h-95 {
+    height: 95% !important;
+}
+
 .logo-text {
     color: #a34c36;
     padding-top: 0.3125rem;

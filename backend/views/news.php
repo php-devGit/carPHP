@@ -16,17 +16,19 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="section-title">
-                        <span class="title">Новости</span>
+                        <h2>Новости</h2>
                     </div>
                     <div class="col-md-12">
                         <div class="post post-thumb">
                             <a class="post-img" href="#"><img src="./public/images/car-header.jpg" alt=""></a>
                             <div class="post-body">
-                                <div class="post-meta">
-                                    <a class="post-category cat-2" href="#">BMW</a>
-                                    <span class="post-date">Март 27, 2018</span>
+                                <div class="post-area">
+                                    <div class="post-meta">
+                                        <a class="post-category cat-2" href="#">BMW</a>
+                                        <span class="post-date">Март 27, 2018</span>
+                                    </div>
+                                    <h3 class="post-title">Поступление новых моделей BMW-6 серии</h3>
                                 </div>
-                                <h3 class="post-title">Поступление новых моделей BMW-6 серии</h3>
                             </div>
                         </div>
                     </div>
@@ -76,7 +78,7 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="section-title">
-                        <span class="title">Акции</span>
+                        <h2>Акции</h2>
                     </div>
 
                 </div>

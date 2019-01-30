@@ -6,7 +6,7 @@
     <link href=".\public\css\lib\bootstrap.css" rel="stylesheet" type="text/css">
     <link href=".\public\css\lib\scrolling-nav.css" rel="stylesheet">
 </head>
-<body id="page-top" onload="menuConstructor();">?
+<body id="page-top" onload="menuConstructor();">
 
 <?php include 'partial/menu.php' ?>
 

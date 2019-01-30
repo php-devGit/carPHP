@@ -1,3 +1,5 @@
+@import "roboto/stylesheet.css";
+
 html, body {
     height: 100%;
 }
@@ -16,6 +18,7 @@ html, body {
 
 .logo-text {
     color: #a34c36;
+    font-family: 'Roboto';
     padding-top: .3125rem;
     padding-bottom: .3125rem;
     margin-right: 1rem;
@@ -34,6 +37,10 @@ html, body {
 
 .menu-item {
     color: #343a40 !important;
+    font-family: 'Roboto';
+    font-size: 15px !important;
+    letter-spacing: normal;
+    text-decoration: none !important;
 }
 
 .h100 {

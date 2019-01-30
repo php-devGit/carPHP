@@ -18,7 +18,7 @@ let menuItems = [
         ]
     },
     {"title": "Контакты", "url": "/contacts", "levels": []},
-    {"title": "Тест драйв", "url": "/test-drive", "levels": []},
+    {"title": "Тест драйв", "url": "/testdrive", "levels": []},
     {"title": "Схема проезда", "url": "/maps", "levels": []}
 ];
 
@@ -28,7 +28,7 @@ let getLink = (title, url) => {
 
 let getButton = (title) => {
     return $("<button></button>")
-        .addClass("btn btn-default dropdown-toggle")
+        .addClass("btn btn-link menu-item dropdown-toggle")
         .attr("data-toggle", "dropdown")
         .text(title);
 };
@@ -40,16 +40,16 @@ let getList = () => {
 let menuConstructor = () => {
     let link, listItem, list, linkItem;
 
-    menuItems.forEach((item) => {
+    menuItems.forEach((menuItem) => {
         list = getList();
-        link = getLink(item.title, item.url);
+        link = getLink(menuItem.title, menuItem.url);
 
-        if (item.levels.length !== 0) {
-            item.levels.forEach((level) => {
+        if (menuItem.levels.length !== 0) {
+            menuItem.levels.forEach((level) => {
                 linkItem = $("<li></li>").append(getLink(level.title, level.url));
                 list.append(linkItem);
             });
-            listItem = $("<li></li>").addClass("dropdown").append(list).append(getButton(item.title));
+            listItem = $("<li></li>").addClass("dropdown").append(list).append(getButton(menuItem.title));
         } else {
             listItem = $("<li></li>").append(link);
         }

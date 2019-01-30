@@ -2,6 +2,7 @@
 
 html, body {
     height: 100%;
+    font-family: 'Roboto';
 }
 
 .full-height {
@@ -41,6 +42,11 @@ html, body {
     font-size: 15px !important;
     letter-spacing: normal;
     text-decoration: none !important;
+}
+
+.content > * {
+    display: block;
+    font-size: 14px;
 }
 
 .h100 {

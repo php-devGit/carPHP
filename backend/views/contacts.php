@@ -8,7 +8,7 @@
 
 <?php include 'partial/menu.php' ?>
 
-<div class="container mt-5">
+<div class="container pt-5">
     <div class="pt-4">
         <span class="title">Контакты дилерского центра в Севастополе</span>
         <p class="content">

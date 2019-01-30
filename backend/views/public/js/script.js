@@ -13,8 +13,8 @@ let menuItems = [
     {
         "title": "История компании", "url": "/history",
         "levels": [
-            {"title": "Об автосалоне", "url": "/about-me"},
-            {"title": "О марке авто", "url": "/about-car"}
+            {"title": "Об автосалоне", "url": "/history#about-me"},
+            {"title": "О марке авто", "url": "/history#about-car"}
         ]
     },
     {"title": "Контакты", "url": "/contacts", "levels": []},
@@ -55,5 +55,11 @@ let menuConstructor = () => {
         }
 
         $(".menu").append(listItem);
+    });
+};
+
+let moved = () => {
+    $(() => {
+        $('html,body').stop().animate({scrollTop: $('#some_point').offset().top}, 1000);
     });
 };

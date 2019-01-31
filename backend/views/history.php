@@ -9,9 +9,9 @@
 <?php include 'partial/menu.php' ?>
 
 <div class="container pt-5">
-    <div id="about-me" class="pt-4">
+    <div id="about-me" class="section pt-4">
         <div class="section-title">
-            <span class="title">Об автосалоне</span>
+            <h2>Об автосалоне</h2>
             <p class="pt-2 content">
                 <span>Вот уже 5 лет мы заботимся о Ваших автомобилях.</span>
                 <span>На сегодняшний день автоцентр «Starcars» — это разветвленная диллерская сеть, представленная известными брендами -  KIA, NISSAN, MITSUBISHI, PEUGEOT.</span>
@@ -48,9 +48,9 @@
         </div>
     </div>
 
-    <div id="about-car" class="pt-2 pb-4">
+    <div id="about-car" class="section pt-2 pb-4">
         <div class="section-title">
-            <span class="title">О марках авто</span>
+            <h2>О марках авто</h2>
         </div>
     </div>
 </div>

@@ -13,7 +13,7 @@ let menuItems = [
     {
         "title": "История компании", "url": "/history",
         "levels": [
-            {"title": "Об автосалоне", "url": "/history#about-me"},
+            {"title": "Об автосалоне", "url": "/history"},
             {"title": "О марке авто", "url": "/history#about-car"}
         ]
     },

@@ -8,11 +8,11 @@
 
 <?php include 'partial/menu.php' ?>
 
-<div class="container pt-5">
-    <div class="row">
-        <div class="col-md-12">
+<div class="section container pt-5 pb-2 pl-4">
+    <div class="row pt-4">
+        <div class="col-md-12 pb-2 pl-4">
             <div class="section-title">
-                <span class="title">Модельный ряд</span>
+                <h2>Модельный ряд</h2>
             </div>
         </div>
         <div class="col-md-4">

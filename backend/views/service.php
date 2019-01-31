@@ -9,29 +9,26 @@
 <?php include 'partial/menu.php' ?>
 
 <div class="container pt-5">
-    <div id="#auto" class="pt-4">
+    <div id="#auto" class="pt-4 section">
         <div class="section-title" id="auto">
-            <span class="title">Автосервис</span>
+            <h2>Автосервис</h2>
             <p class="pt-2 content">
-
             </p>
         </div>
     </div>
 
-    <div id="#tech">
+    <div id="#tech" class="section">
         <div class="section-title">
-            <span class="title">Техобслуживание</span>
+            <h2>Техобслуживание</h2>
             <p class="pt-2 content">
-
             </p>
         </div>
     </div>
 
-    <div id="#repair-parts">
+    <div id="#repair-parts" class="section">
         <div class="section-title">
-            <span class="title">Запчасти</span>
+            <h2>Запчасти</h2>
             <p class="pt-2 content">
-
             </p>
         </div>
     </div>

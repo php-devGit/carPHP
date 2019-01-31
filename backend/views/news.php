@@ -8,15 +8,13 @@
 
 <?php include 'partial/menu.php' ?>
 
-<div class="section pt-5">
-    <div class="container pt-3">
-        <div class="row">
-            <div class="col-md-8">
-                <?php include 'partial/news.php'; ?>
-            </div>
-            <div class="col-md-4">
-                <?php include 'partial/sales.php'; ?>
-            </div>
+<div class="section container pt-5 pb-2 pl-4">
+    <div class="row pt-4">
+        <div class="col-md-7">
+            <?php include 'partial/news.php'; ?>
+        </div>
+        <div class="col-md-5">
+            <?php include 'partial/sales.php'; ?>
         </div>
     </div>
 </div>

@@ -1,31 +1,4 @@
-﻿/* =========================================================
- * bootstrap-datetimepicker.js
- * =========================================================
- * Copyright 2012 Stefan Petre
- *
- * Improvements by Andrew Rowls
- * Improvements by Sébastien Malot
- * Improvements by Yun Lai
- * Improvements by Kenneth Henderick
- * Improvements by CuGBabyBeaR
- * Improvements by Christian Vaas <auspex@auspex.eu>
- *
- * Project URL : http://www.malot.fr/bootstrap-datetimepicker
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ========================================================= */
-
-(function (factory) {
+﻿(function (factory) {
     if (typeof define === 'function' && define.amd)
         define(['jquery'], factory);
     else if (typeof exports === 'object')
@@ -34,14 +7,12 @@
         factory(jQuery);
 
 }(function ($, undefined) {
-
-    // Add ECMA262-5 Array methods if not supported natively (IE8)
     if (!('indexOf' in Array.prototype)) {
         Array.prototype.indexOf = function (find, i) {
             if (i === undefined) i = 0;
             if (i < 0) i += this.length;
             if (i < 0) i = 0;
-            for (var n = this.length; i < n; i++) {
+            for (const n = this.length; i < n; i++) {
                 if (i in this && this[i] === find) {
                     return i;
                 }
@@ -50,14 +21,15 @@
         }
     }
 
-    // Add timezone abbreviation support for ie6+, Chrome, Firefox
     function timeZoneAbbreviation() {
-        var abbreviation, date, formattedStr, i, len, matchedStrings, ref, str;
+        let abbreviation, date, formattedStr, i, len, matchedStrings, ref, str;
         date = (new Date()).toString();
         formattedStr = ((ref = date.split('(')[1]) != null ? ref.slice(0, -1) : 0) || date.split(' ');
         if (formattedStr instanceof Array) {
             matchedStrings = [];
-            for (var i = 0, len = formattedStr.length; i < len; i++) {
+            i = 0;
+            len = formattedStr.length;
+            for (; i < len; i++) {
                 str = formattedStr[i];
                 if ((abbreviation = (ref = str.match(/\b[A-Z]+\b/)) !== null) ? ref[0] : 0) {
                     matchedStrings.push(abbreviation);
@@ -73,16 +45,13 @@
     }
 
     // Picker object
-    var Datetimepicker = function (element, options) {
-        var that = this;
+    const Datetimepicker = function (element, options) {
+        const that = this;
 
         this.element = $(element);
-
-        // add container for single page application
-        // when page switch the datetimepicker div will be removed also.
         this.container = options.container || 'body';
 
-        this.language = options.language || this.element.data('date-language') || 'en';
+        this.language = options.language || this.element.data('date-language') || 'ru';
         this.language = this.language in dates ? this.language : this.language.split('-')[0]; // fr-CA fallback to fr
         this.language = this.language in dates ? this.language : 'en';
         this.isRTL = dates[this.language].rtl || false;
@@ -92,7 +61,6 @@
         this.isVisible = false;
         this.isInput = this.element.is('input');
         this.fontAwesome = options.fontAwesome || this.element.data('font-awesome') || false;
-
         this.bootcssVer = options.bootcssVer || (this.isInput ? (this.element.is('.form-control') ? 3 : 2) : (this.bootcssVer = this.element.is('.input-group') ? 3 : 2));
 
         this.component = this.element.is('.date') ? (this.bootcssVer === 3 ? this.element.find('.input-group-addon .glyphicon-th, .input-group-addon .glyphicon-time, .input-group-addon .glyphicon-remove, .input-group-addon .glyphicon-calendar, .input-group-addon .fa-calendar, .input-group-addon .fa-clock-o').parent() : this.element.find('.add-on .icon-th, .add-on .icon-time, .add-on .icon-calendar, .add-on .fa-calendar, .add-on .fa-clock-o').parent()) : false;
@@ -114,7 +82,7 @@
         this.icons = {
             leftArrow: this.fontAwesome ? 'fa-arrow-left' : (this.bootcssVer === 3 ? 'glyphicon-arrow-left' : 'icon-arrow-left'),
             rightArrow: this.fontAwesome ? 'fa-arrow-right' : (this.bootcssVer === 3 ? 'glyphicon-arrow-right' : 'icon-arrow-right')
-        }
+        };
         this.icontype = this.fontAwesome ? 'fa' : 'glyphicon';
 
         this._attachEvents();
@@ -194,7 +162,7 @@
         } else if ('dateForceParse' in this.element.data()) {
             this.forceParse = this.element.data('date-force-parse');
         }
-        var template = this.bootcssVer === 3 ? DPGlobal.templateV3 : DPGlobal.template;
+        let template = this.bootcssVer === 3 ? DPGlobal.templateV3 : DPGlobal.template;
         while (template.indexOf('{iconType}') !== -1) {
             template = template.replace('{iconType}', this.icontype);
         }
@@ -226,7 +194,7 @@
         }
         if (this.isRTL) {
             this.picker.addClass('datetimepicker-rtl');
-            var selector = this.bootcssVer === 3 ? '.prev span, .next span' : '.prev i, .next i';
+            const selector = this.bootcssVer === 3 ? '.prev span, .next span' : '.prev i, .next i';
             this.picker.find(selector).toggleClass(this.icons.leftArrow + ' ' + this.icons.rightArrow);
         }
 
@@ -261,30 +229,30 @@
         this.weekStart = this.weekStart % 7;
         this.weekEnd = ((this.weekStart + 6) % 7);
         this.onRenderDay = function (date) {
-            var render = (options.onRenderDay || function () {
+            let render = (options.onRenderDay || function () {
                 return [];
             })(date);
             if (typeof render === 'string') {
                 render = [render];
             }
-            var res = ['day'];
+            const res = ['day'];
             return res.concat((render ? render : []));
         };
         this.onRenderHour = function (date) {
-            var render = (options.onRenderHour || function () {
+            let render = (options.onRenderHour || function () {
                 return [];
             })(date);
-            var res = ['hour'];
+            const res = ['hour'];
             if (typeof render === 'string') {
                 render = [render];
             }
             return res.concat((render ? render : []));
         };
         this.onRenderMinute = function (date) {
-            var render = (options.onRenderMinute || function () {
+            let render = (options.onRenderMinute || function () {
                 return [];
             })(date);
-            var res = ['minute'];
+            const res = ['minute'];
             if (typeof render === 'string') {
                 render = [render];
             }
@@ -296,28 +264,28 @@
             return res.concat((render ? render : []));
         };
         this.onRenderYear = function (date) {
-            var render = (options.onRenderYear || function () {
+            let render = (options.onRenderYear || function () {
                 return [];
             })(date);
-            var res = ['year'];
+            const res = ['year'];
             if (typeof render === 'string') {
                 render = [render];
             }
             if (this.date.getUTCFullYear() === date.getUTCFullYear()) {
                 res.push('active');
             }
-            var currentYear = date.getUTCFullYear();
-            var endYear = this.endDate.getUTCFullYear();
+            const currentYear = date.getUTCFullYear();
+            const endYear = this.endDate.getUTCFullYear();
             if (date < this.startDate || currentYear > endYear) {
                 res.push('disabled');
             }
             return res.concat((render ? render : []));
         }
         this.onRenderMonth = function (date) {
-            var render = (options.onRenderMonth || function () {
+            let render = (options.onRenderMonth || function () {
                 return [];
             })(date);
-            var res = ['month'];
+            const res = ['month'];
             if (typeof render === 'string') {
                 render = [render];
             }
@@ -384,7 +352,8 @@
                     }]
                 ];
             }
-            for (var i = 0, el, ev; i < this._events.length; i++) {
+            let i = 0, el, ev;
+            for (; i < this._events.length; i++) {
                 el = this._events[i][0];
                 ev = this._events[i][1];
                 el.on(ev);
@@ -392,7 +361,8 @@
         },
 
         _detachEvents: function () {
-            for (var i = 0, el, ev; i < this._events.length; i++) {
+            let i = 0, el, ev;
+            for (; i < this._events.length; i++) {
                 el = this._events[i][0];
                 ev = this._events[i][1];
                 el.off(ev);
@@ -454,7 +424,7 @@
         },
 
         getDate: function () {
-            var d = this.getUTCDate();
+            const d = this.getUTCDate();
             if (d === null) {
                 return null;
             }
@@ -495,7 +465,7 @@
 
         setFormat: function (format) {
             this.format = DPGlobal.parseFormat(format, this.formatType);
-            var element;
+            let element;
             if (this.isInput) {
                 element = this.element;
             } else if (this.component) {
@@ -507,7 +477,7 @@
         },
 
         setValue: function () {
-            var formatted = this.getFormattedDate();
+            const formatted = this.getFormattedDate();
             if (!this.isInput) {
                 if (this.component) {
                     this.element.find('input').val(formatted);
@@ -549,7 +519,7 @@
             if (!$.isArray(this.datesDisabled)) {
                 this.datesDisabled = this.datesDisabled.split(/,\s*/);
             }
-            var mThis = this;
+            const mThis = this;
             this.datesDisabled = $.map(this.datesDisabled, function (d) {
                 return DPGlobal.parseDate(d, mThis.format, mThis.language, mThis.formatType, mThis.timezone).toDateString();
             });
@@ -603,9 +573,9 @@
             if (this.isInline) return;
 
             if (!this.zIndex) {
-                var index_highest = 0;
+                let index_highest = 0;
                 $('div').each(function () {
-                    var index_current = parseInt($(this).css('zIndex'), 10);
+                    const index_current = parseInt($(this).css('zIndex'), 10);
                     if (index_current > index_highest) {
                         index_highest = index_current;
                     }
@@ -613,7 +583,7 @@
                 this.zIndex = index_highest + 10;
             }
 
-            var offset, top, left, containerOffset;
+            let offset, top, left, containerOffset;
             if (this.container instanceof $) {
                 containerOffset = this.container.offset();
             } else {
@@ -634,7 +604,7 @@
                 }
             }
 
-            var bodyWidth = document.body.clientWidth || window.innerWidth;
+            const bodyWidth = document.body.clientWidth || window.innerWidth;
             if (left + 220 > bodyWidth) {
                 left = bodyWidth - 220;
             }
@@ -658,7 +628,7 @@
         hour_minute: "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]",
 
         update: function () {
-            var date, fromArgs = false;
+            let date, fromArgs = false;
             if (arguments && arguments.length && (typeof arguments[0] === 'string' || arguments[0] instanceof Date)) {
                 date = arguments[0];
                 fromArgs = true;
@@ -695,7 +665,7 @@
         },
 
         fillDow: function () {
-            var dowCnt = this.weekStart,
+            let dowCnt = this.weekStart,
                 html = '<tr>';
             while (dowCnt < this.weekStart + 7) {
                 html += '<th class="dow">' + dates[this.language].daysMin[(dowCnt++) % 7] + '</th>';
@@ -705,11 +675,11 @@
         },
 
         fillMonths: function () {
-            var html = '';
-            var d = new Date(this.viewDate);
-            for (var i = 0; i < 12; i++) {
+            let html = '';
+            const d = new Date(this.viewDate);
+            for (let i = 0; i < 12; i++) {
                 d.setUTCMonth(i);
-                var classes = this.onRenderMonth(d);
+                const classes = this.onRenderMonth(d);
                 html += '<span class="' + classes.join(' ') + '">' + dates[this.language].monthsShort[i] + '</span>';
             }
             this.picker.find('.datetimepicker-months td').html(html);
@@ -719,9 +689,9 @@
             if (!this.date || !this.viewDate) {
                 return;
             }
-            var d = new Date(this.viewDate),
-                year = d.getUTCFullYear(),
-                month = d.getUTCMonth(),
+            let d = new Date(this.viewDate),
+                year = d.getUTCFullYear();
+            const month = d.getUTCMonth(),
                 dayMonth = d.getUTCDate(),
                 hours = d.getUTCHours(),
                 startYear = this.startDate.getUTCFullYear(),
@@ -732,7 +702,7 @@
                 today = new Date();
             this.setTitle('.datetimepicker-days', dates[this.language].months[month] + ' ' + year)
             if (this.formatViewType === 'time') {
-                var formatted = this.getFormattedDate();
+                const formatted = this.getFormattedDate();
                 this.setTitle('.datetimepicker-hours', formatted);
                 this.setTitle('.datetimepicker-minutes', formatted);
             } else {
@@ -747,15 +717,15 @@
                 .toggle(this.clearBtn !== false);
             this.updateNavArrows();
             this.fillMonths();
-            var prevMonth = UTCDate(year, month - 1, 28, 0, 0, 0, 0),
+            const prevMonth = UTCDate(year, month - 1, 28, 0, 0, 0, 0),
                 day = DPGlobal.getDaysInMonth(prevMonth.getUTCFullYear(), prevMonth.getUTCMonth());
             prevMonth.setUTCDate(day);
             prevMonth.setUTCDate(day - (prevMonth.getUTCDay() - this.weekStart + 7) % 7);
-            var nextMonth = new Date(prevMonth);
+            let nextMonth = new Date(prevMonth);
             nextMonth.setUTCDate(nextMonth.getUTCDate() + 42);
             nextMonth = nextMonth.valueOf();
-            var html = [];
-            var classes;
+            let html = [];
+            let classes;
             while (prevMonth.valueOf() < nextMonth) {
                 if (prevMonth.getUTCDay() === this.weekStart) {
                     html.push('<tr>');
@@ -790,8 +760,8 @@
             this.picker.find('.datetimepicker-days tbody').empty().append(html.join(''));
 
             html = [];
-            var txt = '', meridian = '', meridianOld = '';
-            var hoursDisabled = this.hoursDisabled || [];
+            let txt = '', meridian = '', meridianOld = '';
+            const hoursDisabled = this.hoursDisabled || [];
             d = new Date(this.viewDate)
             for (var i = 0; i < 24; i++) {
                 d.setUTCHours(i);
@@ -799,7 +769,7 @@
                 if (hoursDisabled.indexOf(i) !== -1) {
                     classes.push('disabled');
                 }
-                var actual = UTCDate(year, month, dayMonth, i);
+                const actual = UTCDate(year, month, dayMonth, i);
                 // We want the previous hour for the startDate
                 if ((actual.valueOf() + 3600000) <= this.startDate || actual.valueOf() > this.endDate) {
                     classes.push('disabled');
@@ -836,7 +806,7 @@
             txt = '';
             meridian = '';
             meridianOld = '';
-            var minutesDisabled = this.minutesDisabled || [];
+            const minutesDisabled = this.minutesDisabled || [];
             d = new Date(this.viewDate);
             for (var i = 0; i < 60; i += this.minuteStep) {
                 if (minutesDisabled.indexOf(i) !== -1) continue;
@@ -864,8 +834,8 @@
             }
             this.picker.find('.datetimepicker-minutes td').html(html.join(''));
 
-            var currentYear = this.date.getUTCFullYear();
-            var months = this.setTitle('.datetimepicker-months', year)
+            const currentYear = this.date.getUTCFullYear();
+            const months = this.setTitle('.datetimepicker-months', year)
                 .end()
                 .find('.month').removeClass('active');
             if (currentYear === year) {
@@ -885,7 +855,7 @@
 
             html = '';
             year = parseInt(year / 10, 10) * 10;
-            var yearCont = this.setTitle('.datetimepicker-years', year + '-' + (year + 9))
+            const yearCont = this.setTitle('.datetimepicker-years', year + '-' + (year + 9))
                 .end()
                 .find('td');
             year -= 1;
@@ -904,7 +874,7 @@
         },
 
         updateNavArrows: function () {
-            var d = new Date(this.viewDate),
+            const d = new Date(this.viewDate),
                 year = d.getUTCFullYear(),
                 month = d.getUTCMonth(),
                 day = d.getUTCDate(),
@@ -985,11 +955,11 @@
 
             this.wheelPause = true;
 
-            var originalEvent = e.originalEvent;
+            const originalEvent = e.originalEvent;
 
-            var delta = originalEvent.wheelDelta;
+            const delta = originalEvent.wheelDelta;
 
-            var mode = delta > 0 ? 1 : (delta === 0) ? 0 : -1;
+            let mode = delta > 0 ? 1 : (delta === 0) ? 0 : -1;
 
             if (this.wheelViewModeNavigationInverseDirection) {
                 mode = -mode;
@@ -1008,7 +978,7 @@
         click: function (e) {
             e.stopPropagation();
             e.preventDefault();
-            var target = $(e.target).closest('span, td, th, legend');
+            let target = $(e.target).closest('span, td, th, legend');
             if (target.is('.' + this.icontype)) {
                 target = $(target).parent().closest('span, td, th, legend');
             }
@@ -1030,7 +1000,7 @@
                                 break;
                             case 'prev':
                             case 'next':
-                                var dir = DPGlobal.modes[this.viewMode].navStep * (target[0].className === 'prev' ? -1 : 1);
+                                const dir = DPGlobal.modes[this.viewMode].navStep * (target[0].className === 'prev' ? -1 : 1);
                                 switch (this.viewMode) {
                                     case 0:
                                         this.viewDate = this.moveHour(this.viewDate, dir);
@@ -1061,7 +1031,7 @@
                                 }
                                 break;
                             case 'today':
-                                var date = new Date();
+                                let date = new Date();
                                 date = UTCDate(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), 0);
 
                                 // Respect startDate and endDate.
@@ -1204,7 +1174,7 @@
                 this.viewDate = date;
             this.fill();
             this.setValue();
-            var element;
+            let element;
             if (this.isInput) {
                 element = this.element;
             } else if (this.component) {
@@ -1223,7 +1193,7 @@
 
         moveMinute: function (date, dir) {
             if (!dir) return date;
-            var new_date = new Date(date.valueOf());
+            const new_date = new Date(date.valueOf());
             //dir = dir > 0 ? 1 : -1;
             new_date.setUTCMinutes(new_date.getUTCMinutes() + (dir * this.minuteStep));
             return new_date;
@@ -1231,7 +1201,7 @@
 
         moveHour: function (date, dir) {
             if (!dir) return date;
-            var new_date = new Date(date.valueOf());
+            const new_date = new Date(date.valueOf());
             //dir = dir > 0 ? 1 : -1;
             new_date.setUTCHours(new_date.getUTCHours() + dir);
             return new_date;
@@ -1239,7 +1209,7 @@
 
         moveDate: function (date, dir) {
             if (!dir) return date;
-            var new_date = new Date(date.valueOf());
+            const new_date = new Date(date.valueOf());
             //dir = dir > 0 ? 1 : -1;
             new_date.setUTCDate(new_date.getUTCDate() + dir);
             return new_date;
@@ -1247,11 +1217,11 @@
 
         moveMonth: function (date, dir) {
             if (!dir) return date;
-            var new_date = new Date(date.valueOf()),
-                day = new_date.getUTCDate(),
-                month = new_date.getUTCMonth(),
-                mag = Math.abs(dir),
-                new_month, test;
+            let new_date = new Date(date.valueOf()),
+                day = new_date.getUTCDate();
+            const month = new_date.getUTCMonth(),
+                mag = Math.abs(dir);
+            let new_month, test;
             dir = dir > 0 ? 1 : -1;
             if (mag === 1) {
                 test = dir === -1
@@ -1272,7 +1242,7 @@
                     new_month = (new_month + 12) % 12;
             } else {
                 // For magnitudes >1, move one month at a time...
-                for (var i = 0; i < mag; i++)
+                for (let i = 0; i < mag; i++)
                     // ...which might decrease the day (eg, Jan 31 to Feb 28, etc)...
                     new_date = this.moveMonth(new_date, dir);
                 // ...then reset the day, keeping it in the new month
@@ -1305,7 +1275,7 @@
                     this.show();
                 return;
             }
-            var dateChanged = false,
+            let dateChanged = false,
                 dir, newDate, newViewDate;
             switch (e.keyCode) {
                 case 27: // escape
@@ -1316,7 +1286,7 @@
                 case 39: // right
                     if (!this.keyboardNavigation) break;
                     dir = e.keyCode === 37 ? -1 : 1;
-                    var viewMode = this.viewMode;
+                    let viewMode = this.viewMode;
                     if (e.ctrlKey) {
                         viewMode += 2;
                     } else if (e.shiftKey) {
@@ -1389,7 +1359,7 @@
                     break;
                 case 13: // enter
                     if (this.viewMode !== 0) {
-                        var oldViewMode = this.viewMode;
+                        const oldViewMode = this.viewMode;
                         this.showMode(-1);
                         this.fill();
                         if (oldViewMode === this.viewMode && this.autoclose) {
@@ -1408,7 +1378,7 @@
                     break;
             }
             if (dateChanged) {
-                var element;
+                let element;
                 if (this.isInput) {
                     element = this.element;
                 } else if (this.component) {
@@ -1426,7 +1396,7 @@
 
         showMode: function (dir) {
             if (dir) {
-                var newViewMode = Math.max(0, Math.min(DPGlobal.modes.length - 1, this.viewMode + dir));
+                const newViewMode = Math.max(0, Math.min(DPGlobal.modes.length - 1, this.viewMode + dir));
                 if (newViewMode >= this.minView && newViewMode <= this.maxView) {
                     this.element.trigger({
                         type: 'changeMode',
@@ -1474,13 +1444,13 @@
 
     var old = $.fn.datetimepicker;
     $.fn.datetimepicker = function (option) {
-        var args = Array.apply(null, arguments);
+        const args = Array.apply(null, arguments);
         args.shift();
-        var internal_return;
+        let internal_return;
         this.each(function () {
-            var $this = $(this),
-                data = $this.data('datetimepicker'),
-                options = typeof option === 'object' && option;
+            const $this = $(this);
+            let data = $this.data('datetimepicker');
+            const options = typeof option === 'object' && option;
             if (!data) {
                 $this.data('datetimepicker', (data = new Datetimepicker(this, $.extend({}, $.fn.datetimepicker.defaults, options))));
             }
@@ -1575,7 +1545,7 @@
         parseFormat: function (format, type) {
             // IE treats \0 as a string end in inputs (truncating the value),
             // so it's a bad format delimiter, anyway
-            var separators = format.replace(this.validParts(type), '\0').split('\0'),
+            const separators = format.replace(this.validParts(type), '\0').split('\0'),
                 parts = format.match(this.validParts(type));
             if (!separators || !separators.length || !parts || parts.length === 0) {
                 throw new Error('Invalid date format.');
@@ -1584,7 +1554,7 @@
         },
         parseDate: function (date, format, language, type, timezone) {
             if (date instanceof Date) {
-                var dateUTC = new Date(date.valueOf() - date.getTimezoneOffset() * 60000);
+                const dateUTC = new Date(date.valueOf() - date.getTimezoneOffset() * 60000);
                 dateUTC.setMilliseconds(0);
                 return dateUTC;
             }
@@ -1693,7 +1663,7 @@
                         switch (part) {
                             case 'MM':
                                 filtered = $(dates[language].months).filter(function () {
-                                    var m = this.slice(0, parts[i].length),
+                                    const m = this.slice(0, parts[i].length),
                                         p = parts[i].slice(0, m.length);
                                     return m === p;
                                 });
@@ -1701,7 +1671,7 @@
                                 break;
                             case 'M':
                                 filtered = $(dates[language].monthsShort).filter(function () {
-                                    var m = this.slice(0, parts[i].length),
+                                    const m = this.slice(0, parts[i].length),
                                         p = parts[i].slice(0, m.length);
                                     return m.toLowerCase() === p.toLowerCase();
                                 });
@@ -1732,7 +1702,7 @@
             if (date === null) {
                 return '';
             }
-            var val;
+            let val;
             if (type === 'standard') {
                 val = {
                     t: date.getTime(),
@@ -1810,7 +1780,9 @@
             }
             var date = [],
                 seps = $.extend([], format.separators);
-            for (var i = 0, cnt = format.parts.length; i < cnt; i++) {
+            let i = 0;
+            const cnt = format.parts.length;
+            for (; i < cnt; i++) {
                 if (seps.length) {
                     date.push(seps.shift());
                 }
@@ -1958,7 +1930,7 @@
         'focus.datetimepicker.data-api click.datetimepicker.data-api',
         '[data-provide="datetimepicker"]',
         function (e) {
-            var $this = $(this);
+            const $this = $(this);
             if ($this.data('datetimepicker')) return;
             e.preventDefault();
             // component click requires us to explicitly show it

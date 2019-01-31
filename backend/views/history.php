@@ -2,15 +2,15 @@
 <html lang="ru">
 <head>
     <title>История компании Starcars</title>
-    <?php include 'partial/styles.php' ?>
+    <?php include 'partial/header.php' ?>
 </head>
-<body id="page-top" onload="menuConstructor();">
+<body id="page-top" onload="loadPageAnchor();">
 
 <?php include 'partial/menu.php' ?>
 
 <div class="container pt-5">
     <div id="about-me" class="pt-4">
-        <div class="section-title" id="about-me">
+        <div class="section-title">
             <span class="title">Об автосалоне</span>
             <p class="pt-2 content">
                 <span>Вот уже 5 лет мы заботимся о Ваших автомобилях.</span>
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <div id="about-cars">
+    <div id="about-car" class="pt-2 pb-4">
         <div class="section-title">
             <span class="title">О марках авто</span>
         </div>

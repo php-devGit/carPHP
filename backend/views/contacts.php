@@ -2,9 +2,9 @@
 <html lang="ru">
 <head>
     <title>Контактная информация Starcars</title>
-    <?php include 'partial/styles.php' ?>
+    <?php include 'partial/header.php' ?>
 </head>
-<body id="page-top" onload="menuConstructor();">
+<body id="page-top" onload="loadPage();">
 
 <?php include 'partial/menu.php' ?>
 

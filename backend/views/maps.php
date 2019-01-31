@@ -2,9 +2,9 @@
 <html lang="ru">
 <head>
     <title>Схема проезда Starcars</title>
-    <?php include 'partial/styles.php' ?>
+    <?php include 'partial/header.php' ?>
 </head>
-<body id="page-top" onload="menuConstructor();">
+<body id="page-top" onload="loadPage();">
 
 <?php include 'partial/menu.php' ?>
 
@@ -14,9 +14,9 @@
             <div class="col-md-12">
                 <div class="section-title">
                     <span class="title">Расположение</span>
-                    <p class="text pt-2">
-                        <span class="content">Дилерский центр «Starcars» располагается на стыке двух самых густонаселенных районов Севастополя.</span>
-                        <span class="content pt-2">Для того, чтобы добраться на общественном транспорте Вам подойдут маршруты: 14,102, 400, 30, 12, 77, 109, 95,110, 112,16, 10, 107,102, 79, 4 до остановки Строитель или Студенческий городок.</span>
+                    <p class="text pt-2 content">
+                        <span>Дилерский центр «Starcars» располагается на стыке двух самых густонаселенных районов Севастополя.</span>
+                        <span>Для того, чтобы добраться на общественном транспорте Вам подойдут маршруты: 14,102, 400, 30, 12, 77, 109, 95,110, 112,16, 10, 107,102, 79, 4 до остановки Строитель или Студенческий городок.</span>
                     </p>
                     <span class="title">Схема проезда</span>
                     <div class="pt-3">
@@ -27,7 +27,9 @@
             </div>
         </div>
     </div>
-    <?php include 'partial/footer.php'; ?>
+</div>
+
+<?php include 'partial/footer.php'; ?>
 
 </body>
 </html>

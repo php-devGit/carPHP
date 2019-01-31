@@ -5,9 +5,9 @@ let menuItems = [
     {
         "title": "Сервис", "url": "/service",
         "levels": [
-            {"title": "Автосервис", "url": "/auto-service"},
-            {"title": "Техническое обслуживание", "url": "/tech-service"},
-            {"title": "Запчасти", "url": "/repair-parts"}
+            {"title": "Автосервис", "url": "/service#auto"},
+            {"title": "Техническое обслуживание", "url": "/service#tech"},
+            {"title": "Запчасти", "url": "/service#repair-parts"}
         ]
     },
     {
@@ -18,7 +18,7 @@ let menuItems = [
         ]
     },
     {"title": "Контакты", "url": "/contacts", "levels": []},
-    {"title": "Тест драйв", "url": "/testdrive", "levels": []},
+    {"title": "Тест-драйв", "url": "/testdrive", "levels": []},
     {"title": "Схема проезда", "url": "/maps", "levels": []}
 ];
 
@@ -38,28 +38,37 @@ let getList = () => {
 };
 
 let menuConstructor = () => {
-    let link, listItem, list, linkItem;
+    let listItem;
 
     menuItems.forEach((menuItem) => {
-        list = getList();
-        link = getLink(menuItem.title, menuItem.url);
-
         if (menuItem.levels.length !== 0) {
+            let list = getList();
+
             menuItem.levels.forEach((level) => {
-                linkItem = $("<li></li>").append(getLink(level.title, level.url));
-                list.append(linkItem);
+                list.append($("<li></li>").append(getLink(level.title, level.url)));
             });
             listItem = $("<li></li>").addClass("dropdown").append(list).append(getButton(menuItem.title));
         } else {
-            listItem = $("<li></li>").append(link);
+            listItem = $("<li></li>").append(getLink(menuItem.title, menuItem.url));
         }
 
         $(".menu").append(listItem);
     });
 };
 
-let moved = () => {
-    $(() => {
-        $('html,body').stop().animate({scrollTop: $('#some_point').offset().top}, 1000);
-    });
+let movedToSection = () => {
+    let anchor = window.location.hash.replace('#', '');
+    if (document.getElementById(anchor) !== null) {
+        let moveTo = document.getElementById(anchor).offsetTop;
+        window.scrollTo(0, moveTo);
+    }
+};
+
+let loadPage = () => {
+    menuConstructor();
+};
+
+let loadPageAnchor = () => {
+    menuConstructor();
+    movedToSection();
 };

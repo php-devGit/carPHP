@@ -1,11 +1,10 @@
 <?php
-
 require_once 'ErrorController.php';
 
 class Router
 {
-
     // Роутинг по средством выбора между ресурсами и контроллерами
+    // Точка старта, в которую приходят все запросы
     static function requestHandler()
     {
         $routes = explode('/', $_SERVER['REQUEST_URI']);
@@ -21,7 +20,6 @@ class Router
     {
         $requestPath = '';
         $extFile = '';
-
         foreach ($routes as $value) {
             $requestPath .= '\\' . $value;
             switch ($value) {
@@ -47,27 +45,9 @@ class Router
         }
     }
 
-    static function controllerUserHandler($routes)
+    static function getController($controller_path, $controller_name, $method_name)
     {
-        // Дефолтный контроолер, действие
-        $controller_name = 'Main';
-        $action_name = 'getPage';
-
-        // Если задан роутинг (/index) в URL, то присваиваем, иначе остаётся дефолтный, объявленный выше
-        if (!empty($routes[1])) {
-            $controller_name = $routes[1];
-        }
-
-        // Если задан активити в URL, то присваиваем, иначе остаётся дефолтный, объявленный выше
-        if (!empty($routes[2])) {
-            $action_name = $routes[2];
-        }
-
-        // Формируем переменную с наименованием файла класса и путь к классу
-        $controller_file = $controller_name . '.php';
-        $controller_path = dirname(__FILE__) . "\\" . $controller_file;
-
-        // Объект класса Error (вызванный из другого метода, в котором инициализуруются поля)
+        // Объект класса Error
         $errorPageNotFound = getPageNotFound();
         $errorMethodNotFound = getMethodNotFound();
 
@@ -75,52 +55,65 @@ class Router
         if (file_exists($controller_path)) {
             include $controller_path;
             $controller = new $controller_name;
-            $action = $action_name;
-            if (method_exists($controller, $action)) {
-                $controller->$action();
+            $method = $method_name;
+
+            if (method_exists($controller, $method)) {
+                $controller->$method();
             } else {
                 Router::ErrorPage($errorMethodNotFound->getCodeError(), $errorMethodNotFound->getErrorDescription());
             }
+
         } else {
             Router::ErrorPage($errorPageNotFound->getCodeError(), $errorPageNotFound->getErrorDescription());
         }
     }
 
+    static function getControllerName($routes, $index)
+    {
+        // Дефолтный контролер
+        $controller_name = 'Main';
+        // Если задан роутинг (/yourPage) в URL, то присваиваем, иначе остаётся дефолтный, объявленный выше
+        if (!empty($routes[$index])) {
+            $controller_name = $routes[$index];
+        }
+        return $controller_name;
+    }
+
+    static function getMethodName($routes, $index)
+    {
+        // Дефолтное активити
+        $method_name = 'getPage';
+        // Если задан активити в URL, то присваиваем, иначе остаётся дефолтный, объявленный выше
+        if (!empty($routes[$index])) {
+            $method_name = $routes[$index];
+        }
+        return $method_name;
+    }
+
+    static function controllerUserHandler($routes)
+    {
+        $controller_name = self::getControllerName($routes, 1);
+        $method_name = self::getMethodName($routes, 2);
+
+        // Формируем переменную с наименованием файла класса и путь к классу
+        $controller_file = $controller_name . '.php';
+        $controller_path = dirname(__FILE__) . "\\" . $controller_file;
+
+        // Если существует файл класса и метод для вызова, то вызываем метод отображения UI, иначе редирект с ошибкой на главную
+        self::getController($controller_path, $controller_name, $method_name);
+    }
+
     static function controllerAdminHandler($routes)
     {
-        $controller_name = 'Main';
-        $action_name = 'getPage';
-
-        if (!empty($routes[2])) {
-            $controller_name = $routes[2];
-        }
-
-        // Если задан активити в URL, то присваиваем, иначе остаётся дефолтный, объявленный выше
-        if (!empty($routes[3])) {
-            $action_name = $routes[3];
-        }
+        $controller_name = self::getControllerName($routes, 2);
+        $method_name = self::getMethodName($routes, 3);
 
         // Формируем переменную с наименованием файла класса и путь к классу
         $controller_file = $controller_name . '.php';
         $controller_path = dirname(__FILE__) . "\\" . 'admin\\' . $controller_file;
 
-        // Объект класса Error (вызванный из другого метода, в котором инициализуруются поля)
-        $errorPageNotFound = getPageNotFound();
-        $errorMethodNotFound = getMethodNotFound();
-
         // Если существует файл класса и метод для вызова, то вызываем метод отображения UI, иначе редирект с ошибкой на главную
-        if (file_exists($controller_path)) {
-            include $controller_path;
-            $controller = new $controller_name;
-            $action = $action_name;
-            if (method_exists($controller, $action)) {
-                $controller->$action();
-            } else {
-                Router::ErrorPage($errorMethodNotFound->getCodeError(), $errorMethodNotFound->getErrorDescription());
-            }
-        } else {
-            Router::ErrorPage($errorPageNotFound->getCodeError(), $errorPageNotFound->getErrorDescription());
-        }
+        self::getController($controller_path, $controller_name, $method_name);
     }
 
     static function controllerHandler($routes)
@@ -130,7 +123,6 @@ class Router
         } else {
             self::controllerUserHandler($routes);
         }
-
     }
 
     static function ErrorPage($code, $description)

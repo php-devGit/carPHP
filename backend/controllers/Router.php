@@ -1,5 +1,6 @@
 <?php
 require_once 'ErrorController.php';
+require_once './models/connect.php';
 
 class Router
 {
@@ -90,7 +91,7 @@ class Router
         return $method_name;
     }
 
-    static function controllerUserHandler($routes)
+    static function controllerUserHandler($routes, $db)
     {
         $controller_name = self::getControllerName($routes, 1);
         $method_name = self::getMethodName($routes, 2);
@@ -103,7 +104,7 @@ class Router
         self::getController($controller_path, $controller_name, $method_name);
     }
 
-    static function controllerAdminHandler($routes)
+    static function controllerAdminHandler($routes, $db)
     {
         $controller_name = self::getControllerName($routes, 2);
         $method_name = self::getMethodName($routes, 3);
@@ -118,10 +119,13 @@ class Router
 
     static function controllerHandler($routes)
     {
+        $db = new db();
+        $db->connect();
+
         if ($routes[1] == "admin") {
-            self::controllerAdminHandler($routes);
+            self::controllerAdminHandler($routes, $db);
         } else {
-            self::controllerUserHandler($routes);
+            self::controllerUserHandler($routes, $db);
         }
     }
 

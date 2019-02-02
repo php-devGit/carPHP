@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Панель администратора</title>
+    <title>Панель управления</title>
     <?php include 'partial/header.php' ?>
 </head>
 

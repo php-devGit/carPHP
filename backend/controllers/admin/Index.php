@@ -22,4 +22,20 @@ class Index
             die();
         }
     }
+
+    function isAuth()
+    {
+        if (!$_COOKIE["code"]) {
+            header('Location: /admin/index');
+            die();
+        } else {
+            $db = new Admin();
+            $adminData = $db->findAdminByCookie($_COOKIE["code"]);
+
+            if ($adminData) {
+                return $adminData;
+            }
+            return false;
+        }
+    }
 }

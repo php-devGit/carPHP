@@ -26,16 +26,15 @@ class Index
     function isAuth()
     {
         if (!$_COOKIE["code"]) {
-            header('Location: /admin/index');
-            die();
-        } else {
-            $db = new Admin();
-            $adminData = $db->findAdminByCookie($_COOKIE["code"]);
-
-            if ($adminData) {
-                return $adminData;
-            }
             return false;
+        } else {
+            $admin = new Admin();
+            $adminData = $admin->findAdminByCookie($_COOKIE["code"]);
+
+            if (!$adminData) {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -17,7 +17,6 @@ class Admin extends db
     function findAdminById($adminId)
     {
         $conn = $this->connect();
-
         $conn->set_charset('utf8');
 
         if (!($query = $conn->prepare("SELECT `surname`,`name`,`patr`,`email`,`dostup` FROM `ADMIN` WHERE id = " . $adminId))) {
@@ -47,7 +46,6 @@ class Admin extends db
 
         $query->execute();
         $query->store_result();
-
         $query->bind_result($adminId);
 
         while ($query->fetch()) {
@@ -58,7 +56,7 @@ class Admin extends db
         return $adminData;
     }
 
-    function findCookieAdmin($adminId)
+    function isAdminCookie($adminId)
     {
         $conn = $this->connect();
         if (!($query = $conn->prepare("SELECT * FROM `auth` WHERE adminId = '" . $adminId . "'"))) {
@@ -71,7 +69,7 @@ class Admin extends db
         return $query->num_rows;
     }
 
-    function deleteOldCookieAdmin($adminId)
+    function deleteAdminCookie($adminId)
     {
         $conn = $this->connect();
         if (!($query = $conn->prepare("DELETE FROM `auth` WHERE adminId = " . $adminId))) {
@@ -81,7 +79,7 @@ class Admin extends db
         $query->close();
     }
 
-    function insertCookieAdmin($adminId, $hash)
+    function addAdminCookie($adminId, $hash)
     {
         $conn = $this->connect();
         if (!($query = $conn->prepare("INSERT INTO `auth` (adminId,cookie) VALUES (" . $adminId . ",'" . $hash . "')"))) {
@@ -94,11 +92,11 @@ class Admin extends db
     function manageCookieAdmin($hash, $adminId)
     {
         // Если была задана кука в БД для данного админа - удаляем
-        if ($this->findCookieAdmin($adminId) == 0) {
-            $this->insertCookieAdmin($adminId, $hash);
+        if ($this->isAdminCookie($adminId) == 0) {
+            $this->addAdminCookie($adminId, $hash);
         } else {
-            $this->deleteOldCookieAdmin($adminId);
-            $this->insertCookieAdmin($adminId, $hash);
+            $this->deleteAdminCookie($adminId);
+            $this->addAdminCookie($adminId, $hash);
         }
     }
 

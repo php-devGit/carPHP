@@ -16,6 +16,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <?php include 'partial/getOrders.php'; ?>
+                    <?php include 'partial/createMark.php'; ?>
                 </div>
                 <div class="col-md-6">
                     <?php include 'partial/createBody.php'; ?>

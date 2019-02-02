@@ -6,12 +6,12 @@
         </div>
     </div>
     <div class="panel-body">
-        <form class="form form-vertical">
+        <form class="form form-vertical" method="post" action="/admin/main/createBody">
             <div class="control-group">
                 <label>Тип кузова</label>
                 <div class="controls">
                     <input type="text" class="form-control" placeholder="Введите название"
-                           id="name">
+                           name="name" id="name">
                 </div>
             </div>
             <div class="control-group">

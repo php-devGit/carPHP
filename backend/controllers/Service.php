@@ -2,7 +2,7 @@
 
 class Service
 {
-    function getPage()
+    function getPage($connection)
     {
         include(dirname(__FILE__) . '\..\views\service.php');
     }

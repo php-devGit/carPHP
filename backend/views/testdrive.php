@@ -53,6 +53,16 @@
                                value="<?php echo date("Y-m-d G:i", time() + 60 * 60 * 2) ?>">
                     </div>
                 </div>
+
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="mark" class="field">Выбор марки</label>
+                        <select id="mark" class="form-control">
+                            <option>BMW-1</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="col-3">
                     <div class="form-group">
                         <label for="car" class="field">Выбор автомобиля</label>

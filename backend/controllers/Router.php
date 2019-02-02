@@ -1,6 +1,6 @@
 <?php
 require_once 'ErrorController.php';
-require_once './models/connect.php';
+require_once './models/db.php';
 
 class Router
 {
@@ -91,7 +91,7 @@ class Router
         return $method_name;
     }
 
-    static function controllerUserHandler($routes, $db)
+    static function controllerUserHandler($routes)
     {
         $controller_name = self::getControllerName($routes, 1);
         $method_name = self::getMethodName($routes, 2);
@@ -104,7 +104,7 @@ class Router
         self::getController($controller_path, $controller_name, $method_name);
     }
 
-    static function controllerAdminHandler($routes, $db)
+    static function controllerAdminHandler($routes)
     {
         $controller_name = self::getControllerName($routes, 2);
         $method_name = self::getMethodName($routes, 3);
@@ -120,12 +120,16 @@ class Router
     static function controllerHandler($routes)
     {
         $db = new db();
-        $db->connect();
+        $connection = $db->connect();
 
-        if ($routes[1] == "admin") {
-            self::controllerAdminHandler($routes, $db);
+        if ($connection != false) {
+            if ($routes[1] == "admin") {
+                self::controllerAdminHandler($routes);
+            } else {
+                self::controllerUserHandler($routes);
+            }
         } else {
-            self::controllerUserHandler($routes, $db);
+            echo 'База данных не доступна. Обратитесь к системному администратору.';
         }
     }
 

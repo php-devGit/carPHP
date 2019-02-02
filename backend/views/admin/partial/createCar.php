@@ -21,7 +21,7 @@
                     <select class="form-control" name="markId" id="mark">
                         <?php
                         foreach ($marks as $key => $mark) {
-                            echo '<option id="' . $key . '" name="' . $key . '">' . $mark . '</option>';
+                            echo '<option id="' . $key . '" name="' . $key . '" value="' . $key . '">' . $mark . '</option>';
                         }
                         ?>
                     </select>
@@ -34,7 +34,7 @@
                     <select class="form-control" name="bodyId" id="body">
                         <?php
                         foreach ($bodies as $key => $body) {
-                            echo '<option id="' . $key . '" name="' . $key . '">' . $body . '</option>';
+                            echo '<option id="' . $key . '" name="' . $key . '" value="' . $key . '">' . $body . '</option>';
                         }
                         ?>
                     </select>

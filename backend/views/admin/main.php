@@ -17,6 +17,7 @@
                 <div class="col-md-6">
                     <?php include 'partial/getOrders.php'; ?>
                     <?php include 'partial/createMark.php'; ?>
+                    <?php include 'partial/viewCars.php'; ?>
                 </div>
                 <div class="col-md-6">
                     <?php include 'partial/createBody.php'; ?>

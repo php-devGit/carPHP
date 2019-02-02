@@ -1,10 +1,7 @@
 <?php
 
-include_once 'admin.php';
-
 class Admin extends db
 {
-
     function isAdmin($email, $password)
     {
         $conn = $this->connect();
@@ -17,6 +14,50 @@ class Admin extends db
         return $rows === 1 ? true : false;
     }
 
+    function findAdminById($adminId)
+    {
+        $conn = $this->connect();
+
+        $conn->set_charset('utf8');
+
+        if (!($query = $conn->prepare("SELECT `surname`,`name`,`patr`,`email`,`dostup` FROM `ADMIN` WHERE id = " . $adminId))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+
+        $query->execute();
+        $query->store_result();
+        $query->bind_result($surname, $name, $patr, $email, $dostup);
+
+        while ($query->fetch()) {
+        }
+
+        $object = array('surname' => $surname, 'name' => $name, 'patr' => $patr, 'email' => $email, 'dostup' => $dostup);
+        return json_encode($object);
+    }
+
+    function findAdminByCookie($cookie)
+    {
+        $adminId = null;
+        $adminData = null;
+
+        $conn = $this->connect();
+        if (!($query = $conn->prepare("SELECT (adminId) FROM `auth` WHERE cookie = '" . $cookie . "'"))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+
+        $query->execute();
+        $query->store_result();
+
+        $query->bind_result($adminId);
+
+        while ($query->fetch()) {
+            $adminData = $this->findAdminById($adminId);
+        }
+
+        $query->close();
+        return $adminData;
+    }
+
     function findCookieAdmin($adminId)
     {
         $conn = $this->connect();
@@ -26,6 +67,7 @@ class Admin extends db
 
         $query->execute();
         $query->store_result();
+        $query->close();
         return $query->num_rows;
     }
 
@@ -36,6 +78,7 @@ class Admin extends db
             echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
         }
         $query->execute();
+        $query->close();
     }
 
     function insertCookieAdmin($adminId, $hash)

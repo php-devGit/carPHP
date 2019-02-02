@@ -11,13 +11,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user"></i> Администратор<span class="caret"></span>
+                        <i class="fa fa-user"></i> <?php echo $adminData->surname . ' ' . $adminData->name . ' ' . $adminData->patr; ?>
                     </a>
-                    <ul id="g-account-menu" class="dropdown-menu" role="menu">
-                        <li><a href="#">Профиль</a></li>
-                    </ul>
                 </li>
-                <li><a href="#"><i class="fa fa-lock"></i> Выйти</a></li>
+                <li><a href="/admin/main/logout"><i class="fa fa-lock"></i> Выйти</a></li>
             </ul>
         </div>
     </div>

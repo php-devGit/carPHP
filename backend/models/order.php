@@ -6,11 +6,20 @@ class Order extends db
 {
     function addOrder($POST)
     {
+        if (!$POST["patr"]) {
+            $POST["patr"] = "";
+        }
+
+        $POST["dateTestDrive"] = date($POST["dateTestDrive"]);
+
         $conn = $this->connect();
         $conn->set_charset('utf8');
 
-        $q = "INSERT INTO `orders` (surname, name, patr, phone, dateTestDrive, carId, status) VALUES ('" . $POST['surname'] . ',' . $POST["name"] . ',' . $POST["patr"] . ',' . $POST["dateTestDrive"] . ',' . $POST["carId"] . ',' . "1')";
-        if (!($query = $conn->prepare($q))) {
+        $fields = "(surname, name, patr, phone, dateTestDrive, carId, status)";
+        $values = "('" . $POST['surname'] . "','" . $POST["name"] . "','" . $POST["patr"] . "','" . $POST["phone"] . "','" . $POST["dateTestDrive"] . "'," . $POST["carId"] . "," . " 1)";
+        var_dump($values);
+
+        if (!($query = $conn->prepare("INSERT INTO `orders` " . $fields . " VALUES " . $values))) {
             echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
         }
         $query->execute();

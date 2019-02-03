@@ -6,6 +6,23 @@ include_once './models/order.php';
 
 class Orders
 {
+    function getNameStatus($status)
+    {
+        switch ($status) {
+            case 1 || '1':
+                return 'Ожидает рассмотрения';
+                break;
+            case 2 || '2':
+                return 'Принята';
+                break;
+            case 3 || '3':
+                return 'Отказано';
+                break;
+            default:
+                return 'Неизвестный статус';
+        }
+    }
+
     function getPage()
     {
         $indexPage = new Index();

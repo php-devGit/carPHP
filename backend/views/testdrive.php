@@ -10,7 +10,7 @@
 
 <div class="section container pt-5 pb-2 pl-4">
     <div class="row pt-4">
-        <form action="/testdrive/createOrder">
+        <form action="/testdrive/createOrder" method="post">
             <div class="section-title">
                 <h2>Заявка на тест драйв</h2>
             </div>
@@ -20,20 +20,22 @@
                     <div class="form-group">
                         <label for="surname" class="field">Фамилия</label>
                         <input required type="text" class="form-control" id="surname"
-                               placeholder="Введите вашу фамилию">
+                               placeholder="Введите вашу фамилию" name="surname">
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label for="name" class="field">Имя</label>
-                        <input required type="text" class="form-control" id="name" placeholder="Введите ваше имя">
+                        <input required type="text" class="form-control" id="name" placeholder="Введите ваше имя"
+                               name="name">
                     </div>
                 </div>
 
                 <div class="col-3">
                     <div class="form-group">
                         <label for="patr" class="field">Отчество</label>
-                        <input type="text" class="form-control" id="patr" placeholder="Введите ваше отчество">
+                        <input type="text" class="form-control" id="patr" placeholder="Введите ваше отчество"
+                               name="patr">
                         <small id="patrHelp" class="form-text text-muted labelToField">Необязательное поле</small>
                     </div>
                 </div>
@@ -42,7 +44,7 @@
                     <div class="form-group">
                         <label for="phone" class="field">Контактный телефон</label>
                         <input required type="text" class="form-control" id="phone"
-                               placeholder="Введите ваш контактный телефон">
+                               placeholder="Введите ваш контактный телефон" name="phone">
                     </div>
                 </div>
 
@@ -50,25 +52,21 @@
                     <div class="form-group">
                         <label for="datetime" class="field">Дата и время тест драйва</label>
                         <input size="14" type="text" id="datetime" readonly class="form_datetime form-control"
-                               value="<?php echo date("Y-m-d G:i", time() + 60 * 60 * 2) ?>">
+                               value="<?php echo date("Y-m-d G:i", time() + 60 * 60 * 2) ?>"
+                               name="dateTestDrive">
                     </div>
                 </div>
 
                 <div class="col-3">
                     <div class="form-group">
-                        <label for="mark" class="field">Выбор марки</label>
-                        <select id="mark" class="form-control">
-                            <option>BMW-1</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-3">
-                    <div class="form-group">
-                        <label for="car" class="field">Выбор автомобиля</label>
-                        <select id="car" class="form-control">
-                            <optgroup label="Универсал">Универсал</optgroup>
-                            <option>BMW-1</option>
+                        <label for="carId" class="field">Выбор автомобиля</label>
+                        <select id="carId" name="carId" class="form-control">
+                            <?php
+                            foreach ($cars as $car) {
+                                $infoCar = $car["mark"] . ' ' . $car["model"] . ' (' . $car["cost"] . ' EUR)';
+                                echo '<option value="' . $car["id"] . '">' . $infoCar . '</option>';
+                            }
+                            ?>
                         </select>
                     </div>
                 </div>

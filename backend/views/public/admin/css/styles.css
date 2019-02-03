@@ -17,6 +17,10 @@ footer {
     background-color: #efefef;
 }
 
+.c-elements > span {
+    display: block;
+}
+
 /* count indicator near icons */
 .nav > li .count {
     position: absolute;

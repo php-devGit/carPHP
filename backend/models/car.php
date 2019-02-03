@@ -162,6 +162,7 @@ class Car extends db
         while ($query->fetch()) {
             array_push($cars,
                 array(
+                    'id' => $id,
                     'model' => $model,
                     'cost' => $cost,
                     'mark' => $this->getMark($markId),

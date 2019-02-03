@@ -22,6 +22,7 @@
                 <div class="col-md-6">
                     <?php include 'partial/createBody.php'; ?>
                     <?php include 'partial/createCar.php'; ?>
+                    <?php include 'partial/uploadImage.php'; ?>
                 </div>
             </div>
             <hr>

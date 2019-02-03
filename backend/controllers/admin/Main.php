@@ -3,6 +3,8 @@
 include_once './controllers/admin/index.php';
 include_once './models/admin.php';
 include_once './models/car.php';
+include_once './models/image.php';
+include_once './models/imageCar.php';
 
 class Main
 {
@@ -13,11 +15,13 @@ class Main
 
             $admin = new Admin();
             $car = new Car();
+            $image = new Image();
 
             $adminData = json_decode($admin->findAdminByCookie($_COOKIE["code"]));
             $bodies = $car->getBodies();
             $marks = $car->getMarks();
             $cars = $car->getCars();
+            $images = $image->getImages();
 
             include(dirname(__FILE__) . '\..\..\views\admin\main.php');
         } else {
@@ -59,6 +63,28 @@ class Main
         } else {
             header('Location: /admin/index');
         }
+    }
+
+    function uploadImage()
+    {
+        $image = new Image();
+        $image->addImage(basename($_FILES['image']['name']));
+
+        $uploaddir = dirname(__FILE__) . '/../../views/public/images/';
+        $uploadfile = $uploaddir . basename($_FILES['image']['name']);
+
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+            header('Location: /admin/main');
+        } else {
+            var_dump($_FILES);
+        }
+
+    }
+
+    function attachImageCar()
+    {
+        $imageCar = new ImageCar();
+        $imageCar->addImageCar($_POST["car"], $_POST["image"]);
     }
 
     function logout()

@@ -1,6 +1,7 @@
 <div class="container h-95">
     <div class=" bg-dark h-100">
         <div id="slider" class="carousel slide h-100" data-ride="carousel">
+
             <div class="carousel-inner h-100" role="listbox">
                 <div class="carousel-item active">
                     <div class="carousel-caption d-none d-md-block">

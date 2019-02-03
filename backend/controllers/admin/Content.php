@@ -15,6 +15,7 @@ class Content
             $adminData = json_decode($admin->findAdminByCookie($_COOKIE["code"]));
             $aboutContent = $content->getContent('About');
             $aboutMarksContent = $content->getContent('AboutMark');
+            $textSlide = $content->getContent('Slide');
 
             include(dirname(__FILE__) . '\..\..\views\admin\content.php');
         } else {
@@ -28,6 +29,18 @@ class Content
         if ($indexPage->isAuth() != false) {
             $content = new Contents();
             $content->updateOrInsert($_POST['about'], 'About');
+            header('Location: /admin/content');
+        } else {
+            header('Location: /admin/index');
+        }
+    }
+
+    function updateSlide()
+    {
+        $indexPage = new Index();
+        if ($indexPage->isAuth() != false) {
+            $content = new Contents();
+            $content->updateOrInsert($_POST['textSlide'], 'Slide');
             header('Location: /admin/content');
         } else {
             header('Location: /admin/index');

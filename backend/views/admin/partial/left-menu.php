@@ -8,6 +8,9 @@
             <li>
                 <a href="/admin/orders"><i class="fa fa-envelope"></i> Заявки</a>
             </li>
+            <li>
+                <a href="/admin/content"><i class="fa fa-file-alt"></i> Контент страниц</a>
+            </li>
         </ul>
     </li>
 </ul>

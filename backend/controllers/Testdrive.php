@@ -15,6 +15,14 @@ class TestDrive
     {
         if ($_POST["surname"] && $_POST["name"] && $_POST["dateTestDrive"] && $_POST["carId"]) {
             $order = new Order();
+
+            // Отправка письма реализована, но в связи с отсутствием SMTP на локальном компьютере нет возможности его использовать
+            // на любом сервере такая возможность должна быть и код будет исполняться
+            // Ошибки нет, просто есть предупреждение, что письмо не отправлено
+            $email = "forsocials@mail.ru";
+            $message = "Заявка на тест драйв, от: " . $_POST["surname"] . ' ' . $_POST["name"] . '. На: ' . $_POST["dateTestDrive"];
+            $subject = "Заявка на тест-драйв!";
+            mail($email, $subject, $message);
             $order->addOrder($_POST);
             header('Location: /main');
         } else {

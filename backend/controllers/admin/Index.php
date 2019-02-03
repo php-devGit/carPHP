@@ -30,7 +30,7 @@ class Index
 
     function isAuth()
     {
-        if (!$_COOKIE["code"]) {
+        if (!isset($_COOKIE["code"])) {
             return false;
         } else {
             $admin = new Admin();

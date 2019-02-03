@@ -65,20 +65,33 @@ class Main
         }
     }
 
+    function generatorName()
+    {
+        $chars = "qazxswedcvfrtgbnhyujmkiolp1234567890QAZXSWEDCVFRTGBNHYUJMKIOLP";
+        $max = 12;
+        $size = StrLen($chars) - 1;
+        $name = null;
+        while ($max--) {
+            $name .= $chars[rand(0, $size)];
+        }
+        return $name;
+    }
+
     function uploadImage()
     {
         $image = new Image();
-        $image->addImage(basename($_FILES['image']['name']));
 
-        $uploaddir = dirname(__FILE__) . '/../../views/public/images/';
-        $uploadfile = $uploaddir . basename($_FILES['image']['name']);
+        foreach ($_FILES["image"]["name"] as $key => $name) {
 
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
-            header('Location: /admin/main');
-        } else {
-            var_dump($_FILES);
+            $newName = $this->generatorName() . ".jpg";
+            $uploaddir = dirname(__FILE__) . '/../../views/public/images/';
+            $uploadfile = $uploaddir . basename($newName);
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'][$key], $uploadfile)) {
+                $image->addImage(basename($newName));
+                header('Location: /admin/main');
+            }
         }
-
     }
 
     function attachImageCar()

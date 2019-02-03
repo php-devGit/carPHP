@@ -29,6 +29,7 @@ class Order extends db
     function getOrders()
     {
         $car = new Car();
+
         $conn = $this->connect();
         $conn->set_charset('utf8');
         $orders = [];
@@ -56,5 +57,17 @@ class Order extends db
 
         $query->close();
         return $orders;
+    }
+
+    function updateOrderStatus($id, $status)
+    {
+        $conn = $this->connect();
+        $conn->set_charset('utf8');
+
+        if (!($query = $conn->prepare("UPDATE `orders` SET status = " . $status . " WHERE id = " . $id))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+
+        $query->execute();
     }
 }

@@ -56,14 +56,19 @@ class Router
         if (file_exists($controller_path)) {
             include $controller_path;
             $controller = new $controller_name;
-            $method = $method_name;
+
+            // Убрать get параметры для поиска метода
+            if (strpos($method_name, '?')) {
+                $method = (substr($method_name, 0, strpos($method_name, "?")));
+            } else {
+                $method = $method_name;
+            }
 
             if (method_exists($controller, $method)) {
                 $controller->$method();
             } else {
                 Router::ErrorPage($errorMethodNotFound->getCodeError(), $errorMethodNotFound->getErrorDescription());
             }
-
         } else {
             Router::ErrorPage($errorPageNotFound->getCodeError(), $errorPageNotFound->getErrorDescription());
         }

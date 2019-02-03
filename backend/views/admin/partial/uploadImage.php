@@ -10,7 +10,8 @@
             <div class="control-group">
                 <label>Выберите изображение</label>
                 <div class="controls">
-                    <input type="file" class="form-control" name="image" id="image" multiple>
+                    <input type="file" class="form-control" name="image[]" id="image[]" multiple
+                           accept="image/png, image/jpeg, image/jpg, image/bmp">
                 </div>
             </div>
             <div class="control-group">

@@ -18,7 +18,8 @@ class ImageCar extends db
         header('Location: /admin/main');
     }
 
-    function getImageByCar($idCar)
+
+    function getImagesCar($idCar)
     {
         $conn = $this->connect();
         $conn->set_charset('utf8');
@@ -27,14 +28,17 @@ class ImageCar extends db
         if (!($query = $conn->prepare("SELECT (pictureId) FROM `car_picture` WHERE carId = " . $idCar))) {
             echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
         }
+
         $query->execute();
         $query->bind_result($pictureId);
 
         while ($query->fetch()) {
-            $picture = $pictureId;
+            array_push($picture, $pictureId);
         }
 
         $query->close();
+
+        if (count($picture) == 0) array_push($picture, -1);
         return $picture;
     }
 }

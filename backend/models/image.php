@@ -42,7 +42,7 @@ class Image extends db
 
     function getImageById($idPicture)
     {
-        if ($idPicture) {
+        if ($idPicture && $idPicture != -1) {
             $conn = $this->connect();
             $conn->set_charset('utf8');
             $picture = [];

@@ -15,7 +15,7 @@
         <div class="col-sm-9">
             <div class="row">
                 <div class="col-md-6">
-                    <?php include 'partial/getOrders.php'; ?>
+                    <?php include 'partial/attachPictureCar.php' ?>
                     <?php include 'partial/createMark.php'; ?>
                     <?php include 'partial/viewCars.php'; ?>
                 </div>

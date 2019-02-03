@@ -3,9 +3,19 @@
         <h4>Новые заявки на тест драйв</h4></div>
     <div class="panel-body">
         <div class="list-group">
-            <a href="#" class="list-group-item active">Заявка 1: На 01.02.2019 10:35, BMW-2
-                Series</a>
-            <a href="#" class="list-group-item">Заявка 2: На 02.02.2019 11:45, BMW-4 Series</a>
+            <?php
+            foreach ($ordersData as $key => $orderData) {
+                echo '<a href="#" class="list-group-item">';
+                echo '<span> id: ' . $orderData->id . '</span>';
+                echo '<span> Фамилия: ' . $orderData->surname . '</span>';
+                echo '<span> Имя: ' . $orderData->name . '</span>';
+                echo '<span> Отчество: ' . $orderData->patr . '</span>';
+                echo '<span> Телефон: ' . $orderData->phone . '</span>';
+                echo '<span> Дата и время тест-драйва: ' . $orderData->dateTestDrive . '</span>';
+                echo '<span> Статус: ' . $orderData->status . '</span>';
+                echo '</a>';
+            }
+            ?>
         </div>
     </div>
 </div>

@@ -115,8 +115,35 @@ class Car extends db
         if (!($query = $conn->prepare($q))) {
             echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
         }
+
         $query->execute();
         $query->close();
+    }
+
+    function getCarById($idCar)
+    {
+        $conn = $this->connect();
+        $conn->set_charset('utf8');
+        $cars = [];
+
+        if (!($query = $conn->prepare("SELECT * FROM `car` WHERE id = " . $idCar))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+        $query->execute();
+        $query->bind_result($id, $markId, $bodyId, $model, $cost);
+
+        while ($query->fetch()) {
+            array_push($cars,
+                array(
+                    'model' => $model,
+                    'cost' => $cost,
+                    'mark' => $this->getMark($markId),
+                    'body' => $this->getBody($bodyId))
+            );
+        }
+
+        $query->close();
+        return $cars;
     }
 
     function getCars()
@@ -128,11 +155,18 @@ class Car extends db
         if (!($query = $conn->prepare("SELECT * FROM `car`"))) {
             echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
         }
+
         $query->execute();
         $query->bind_result($id, $markId, $bodyId, $model, $cost);
 
         while ($query->fetch()) {
-            array_push($cars, array('model' => $model, 'cost' => $cost, 'mark' => $this->getMark($markId), 'body' => $this->getBody($bodyId)));
+            array_push($cars,
+                array(
+                    'model' => $model,
+                    'cost' => $cost,
+                    'mark' => $this->getMark($markId),
+                    'body' => $this->getBody($bodyId))
+            );
         }
 
         $query->close();

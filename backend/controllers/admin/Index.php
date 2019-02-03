@@ -6,7 +6,12 @@ class Index
 {
     function getPage()
     {
-        include(dirname(__FILE__) . '\..\..\views\admin\index.php');
+        if (!$this->isAuth()) {
+            include(dirname(__FILE__) . '\..\..\views\admin\index.php');
+        } else {
+            header('Location: /admin/main');
+            die();
+        }
     }
 
     function auth()

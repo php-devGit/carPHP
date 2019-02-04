@@ -89,7 +89,7 @@ class Main
 
             if (move_uploaded_file($_FILES['image']['tmp_name'][$key], $uploadfile)) {
                 $image->addImage(basename($newName));
-                header('Location: /admin/main');
+                header('Location: /admin/main#?success=true');
             }
         }
     }

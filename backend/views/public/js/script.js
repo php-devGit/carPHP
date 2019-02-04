@@ -64,8 +64,18 @@ let movedToSection = () => {
     }
 };
 
+let checkUrl = () => {
+    if (window.location.href.indexOf("success=true") > -1) {
+        alert("Заявка успешно подана.");
+    }
+    if (window.location.href.indexOf("success=false") > -1) {
+        alert("Заявка не подана, в связи с отсутствие некоторых или всех параметров.");
+    }
+};
+
 let loadPage = () => {
     menuConstructor();
+    checkUrl();
 };
 
 let loadPageAnchor = () => {

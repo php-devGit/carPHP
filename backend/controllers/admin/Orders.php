@@ -43,7 +43,7 @@ class Orders
         if ($indexPage->isAuth() != false) {
             $order = new Order();
             $order->updateOrderStatus($_GET["id"], 2);
-            header('Location: /admin/orders');
+            header('Location: /admin/orders#?success=true');
         } else {
             header('Location: /admin/index');
         }
@@ -56,7 +56,7 @@ class Orders
         if ($indexPage->isAuth() != false) {
             $order = new Order();
             $order->updateOrderStatus($_GET["id"], 3);
-            header('Location: /admin/orders');
+            header('Location: /admin/orders#?success=true');
         } else {
             header('Location: /admin/index');
         }

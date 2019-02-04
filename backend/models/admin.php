@@ -93,6 +93,21 @@ class Admin extends db
         $query->close();
     }
 
+    function addAdmin($surname, $name, $patr, $email, $password, $dostup)
+    {
+        $conn = $this->connect();
+        $conn->set_charset('utf8');
+
+        $fields = "(surname, name, patr, email, password, dostup)";
+        $values = "('" . $surname . "', '" . $name . "', '" . $patr . "', '" . $email . "', '" . md5($password) . "', " . $dostup . ")";
+        if (!($query = $conn->prepare("INSERT INTO `admin` " . $fields . " VALUES " . $values))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+
+        $query->execute();
+        $query->close();
+    }
+
     function manageCookieAdmin($hash, $adminId)
     {
         // Если была задана кука в БД для данного админа - удаляем

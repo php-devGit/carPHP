@@ -24,9 +24,9 @@ class TestDrive
             $subject = "Заявка на тест-драйв!";
             mail($email, $subject, $message);
             $order->addOrder($_POST);
-            header('Location: /main');
+            header('Location: /testdrive#?success=true');
         } else {
-            header('Location: /testdrive');
+            header('Location: /testdrive#?success=false');
         }
     }
 }

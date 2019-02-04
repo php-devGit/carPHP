@@ -26,6 +26,6 @@ class Settings
         var_dump($adminData);
 
         $admin->changePassword($adminData->id, $_POST["password"]);
-        header('Location: /admin/settings');
+        header('Location: /admin/settings#?success=true');
     }
 }

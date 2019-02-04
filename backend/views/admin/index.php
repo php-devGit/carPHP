@@ -4,9 +4,9 @@
     <title>Авторизация</title>
     <?php include 'partial/header.php' ?>
     <link href="./../public/admin/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <?php include 'partial/footer.php'; ?>
 </head>
-
-<body>
+<body onload="checkUrl();">
 <div class="container">
     <form action="/admin/index/auth" method="post">
         <div class="panel panel-default mt-5 ml-auto mr-auto w-50">

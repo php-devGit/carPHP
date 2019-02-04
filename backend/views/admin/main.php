@@ -3,9 +3,9 @@
 <head>
     <title>Панель управления</title>
     <?php include 'partial/header.php' ?>
+    <?php include 'partial/footer.php'; ?>
 </head>
-
-<body>
+<body onload="checkUrl();">
 <?php include 'partial/top-menu.php'; ?>
 <div class="container-fluid">
     <div class="row">
@@ -29,8 +29,6 @@
         </div>
     </div>
 </div>
-
-<?php include 'partial/header.php'; ?>
 
 </body>
 </html>

@@ -7,3 +7,12 @@ $(document).ready(function () {
         $(this).find("i").toggleClass("glyphicon-chevron-right glyphicon-chevron-down");
     });
 });
+
+let checkUrl = () => {
+    if (window.location.href.indexOf("success=true") > -1) {
+        alert("Действие успешно выполнено.");
+    }
+    if (window.location.href.indexOf("success=false") > -1) {
+        alert("Действие не выполнено.");
+    }
+};

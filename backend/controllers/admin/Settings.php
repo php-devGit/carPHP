@@ -20,12 +20,13 @@ class Settings
 
     function updatePassword()
     {
-        $admin = new Admin();
-        $adminData = json_decode($admin->findAdminByCookie($_COOKIE["code"]));
-
-        var_dump($adminData);
-
-        $admin->changePassword($adminData->id, $_POST["password"]);
-        header('Location: /admin/settings#?success=true');
+        if ($_POST["password"] != '') {
+            $admin = new Admin();
+            $adminData = json_decode($admin->findAdminByCookie($_COOKIE["code"]));
+            $admin->changePassword($adminData->id, $_POST["password"]);
+            header('Location: /admin/settings#?success=true');
+        } else {
+            header('Location: /admin/settings#?success=false');
+        }
     }
 }

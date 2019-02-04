@@ -11,10 +11,10 @@
 <div class="section container pt-5 pb-2 pl-4">
     <div class="row pt-4">
         <div class="col-md-7">
-            <?php include 'partial/news.php'; ?>
+            <?php echo $news; ?>
         </div>
         <div class="col-md-5">
-            <?php include 'partial/sales.php'; ?>
+            <?php echo $discount; ?>
         </div>
     </div>
 </div>

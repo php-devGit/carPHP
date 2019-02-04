@@ -1,3 +1,12 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Хост: 127.0.0.1
+-- Время создания: Фев 04 2019 г., 20:22
+-- Версия сервера: 10.1.37-MariaDB
+-- Версия PHP: 7.3.0
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -34,7 +43,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `surname`, `name`, `email`, `password`, `patr`, `dostup`) VALUES
-(1, 'Админ', 'для', 'forsocials@mail.ru', '123456', 'отладки', 4);
+(1, 'Админ', 'для', 'forsocials@mail.ru', 'e10adc3949ba59abbe56e057f20f883e', 'отладки', 4);
 
 -- --------------------------------------------------------
 
@@ -53,7 +62,7 @@ CREATE TABLE `auth` (
 --
 
 INSERT INTO `auth` (`id`, `adminId`, `cookie`) VALUES
-(17, 1, 'af976ea92dd11c6b7cb92d560f4bab91'),
+(26, 1, '1e433aa4a890ec92ddb03a3267add06d');
 
 -- --------------------------------------------------------
 
@@ -136,7 +145,10 @@ CREATE TABLE `content` (
 
 INSERT INTO `content` (`id`, `content`, `page`) VALUES
 (1, '<p class=\"pt-2 content\">\r\n<span>Вот уже 5 лет мы заботимся о Ваших автомобилях.</span>\r\n<span>На сегодняшний день автоцентр «Starcars» — это разветвленная диллерская сеть, представленная известными брендами -  KIA, NISSAN, MITSUBISHI, PEUGEOT.</span>\r\n<span class=\"pt-2\">Мы представляем весь спектр необходимых услуг:</span>\r\n<span>· Весь модельный ряд автомобилей от импортеров KIA, Nissan, Mitsubishi, Peugeot в наличии и под заказ</span>\r\n<span>· Бесплатный тест-драйв интересующего автомобиля</span>\r\n<span>· Обмен Вашего автомобиля на новый (услуга Trade In). Трейд ин - это прекрасная возможность обменять Ваш БУ автомобиль на новый с доплатой. Наши консультанты помогут оценить стоимость автомобиля и осуществить Вашу мечту - уехать из автосалона на новом автомобиле</span>\r\n<span>· Авто в кредит</span>\r\n<span>· Автострахование (КАСКО, ОСАГО)</span>\r\n<span>· Авто в лизинг</span>\r\n<span>· Специальные условия на покупку для Корпоративных клиентов</span>\r\n<span>· Гарантия на автомобили</span>\r\n<span>· Техническое обслуживание и ремонт любой сложности</span>\r\n<span>· Кузовные работы любой сложности</span>\r\n<span>· Оригинальные запасные части и аксессуары</span>\r\n<span>· Дополнительное оборудование и установка</span>\r\n<span>· Круглосуточная техническая поддержка</span>\r\n<span>· Для Ваших деток – игровая зона</span>\r\n<span>· А также горячий кофе в нашем кафе с доступом в интернет.</span>\r\n<span class=\"pt-2\">Профессионально подготовленные сотрудники Starcars:</span>\r\n<span>· Учтут все Ваши пожелания и помогут выбрать автомобиль именно в той комплектации, которая будет максимально соответствовать Вашим запросам</span>\r\n<span>· Проведут пробную поездку</span>\r\n<span>· Оценят Ваш прошлый автомобиль</span>\r\n<span>· Возьмут на себя оформление документов и продажу Вашего авто</span>\r\n<span>· Предложат максимально выгодные условия на покупку нового авто.</span>\r\n<span>Наши клиенты всегда могут воспользоваться услугами Сертифицированного Сервисного центра в Севастополе и центра Кузовного ремонта. Техническое обслуживание, диагностика и последующий ремонт производятся с использованием специализированного инструмента и согласно технологий производителя.</span>\r\n<span>Большой склад Оригинальных запчастей в наличии позволит существенно сократить сроки ремонта Вашего автомобиля.</span>\r\n<span>А уютное кафе и бесплатный доступ в интернет позволят провести время в нашем салоне с максимальным комфортом.</span>\r\n<span>Мы стараемся быть лучшими для Вас!</span>\r\n<span class=\"pt-2\">Компания «Starcars»</span>\r\n<span>г. Севастополь, ул. Вакуленчука, д. 47</span>\r\n<span>тел.: +7 (989) 80-10-200</span>\r\n</p>                                                                                ', 'About'),
-(5, '<p class=\"pt-2 content\">\r\n<span>\r\nПромышленная фирма была основана Карлом Фридрихом Раппом в октябре 1916 года, официально компания BMW была зарегистрирована 20 июля 1917 года, но первоначально — как производитель авиационных двигателей, Bayerische Flugzeug-Werke. Округ Мюнхена — Milbertshofen был выбран потому, что он располагался близко от Flugmaschinenfabrik Густава Отто — немецкого производителя самолётов.\r\n\r\nС 1929 года бело-голубая круглая эмблема BMW, использующаяся и до сих пор (показана справа вверху), для удобства начинает трактоваться как самолётный винт на фоне голубого неба. Компания BMW утверждает, что белый и голубой цвета на логотипе взяты из флага Баварии.\r\n\r\n\r\nBMW 320i E46\r\n\r\nBMW Vision Dynamics\r\nВ 1916 году компания подписывает контракт на производство двигателей V12 для Австро-Венгрии. Нуждаясь в дополнительном финансировании, Рапп получает поддержку Камилло Кастильони и Макса Фрица, компания воссоздаётся как Bayerische Motoren Werke GmbH. Быстрый рост предприятия в 1917 году вызвал некоторые трудности, после чего компанию покинул Рапп, руководство перешло к австрийскому промышленнику Францу Йозефу Поппу, а в 1918 году компания была переименована в BMW AG.\r\n</span>\r\n</p>', 'AboutMark');
+(5, '<p class=\"pt-2 content\">\r\n<span>\r\nПромышленная фирма была основана Карлом Фридрихом Раппом в октябре 1916 года, официально компания BMW была зарегистрирована 20 июля 1917 года, но первоначально — как производитель авиационных двигателей, Bayerische Flugzeug-Werke. Округ Мюнхена — Milbertshofen был выбран потому, что он располагался близко от Flugmaschinenfabrik Густава Отто — немецкого производителя самолётов.\r\n\r\nС 1929 года бело-голубая круглая эмблема BMW, использующаяся и до сих пор (показана справа вверху), для удобства начинает трактоваться как самолётный винт на фоне голубого неба. Компания BMW утверждает, что белый и голубой цвета на логотипе взяты из флага Баварии.\r\n\r\n\r\nBMW 320i E46\r\n\r\nBMW Vision Dynamics\r\nВ 1916 году компания подписывает контракт на производство двигателей V12 для Австро-Венгрии. Нуждаясь в дополнительном финансировании, Рапп получает поддержку Камилло Кастильони и Макса Фрица, компания воссоздаётся как Bayerische Motoren Werke GmbH. Быстрый рост предприятия в 1917 году вызвал некоторые трудности, после чего компанию покинул Рапп, руководство перешло к австрийскому промышленнику Францу Йозефу Поппу, а в 1918 году компания была переименована в BMW AG.\r\n</span>\r\n</p>', 'AboutMark'),
+(6, '<div class=\" bg-dark h-100\">\r\n	<div id=\"slider\" class=\"carousel slide h-100\" data-ride=\"carousel\">\r\n\r\n		<div class=\"carousel-inner h-100\" role=\"listbox\">\r\n			<div class=\"carousel-item active\">\r\n				<div class=\"carousel-caption d-none d-md-block\">\r\n					<h1>Автосервис <span class=\"red-text\">Starcars</span></h1>\r\n					<p class=\"lead\">Поиск машины стал еще более простым.</p>\r\n				</div>\r\n				<img class=\"d-flex h100 w-100 o-50\" src=\"/public/images/car-header.jpg\" alt=\"\">\r\n			</div>\r\n			<div class=\"carousel-item\">\r\n				<div class=\"carousel-caption d-none d-md-block\">\r\n					<h1>Автосервис <span class=\"red-text\">Starcars</span></h1>\r\n					<p class=\"lead\">Гарантия качества.</p>\r\n				</div>\r\n				<img class=\"d-block h100 w-100 o-50\" src=\"/public/images/car-header[2].jpg\" alt=\"\">\r\n			</div>\r\n		</div>\r\n		<a class=\"carousel-control-prev\" href=\"#slider\" role=\"button\" data-slide=\"prev\">\r\n			<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\r\n			<span class=\"sr-only\">Previous</span>\r\n		</a>\r\n		<a class=\"carousel-control-next\" href=\"#slider\" role=\"button\" data-slide=\"next\">\r\n			<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\r\n			<span class=\"sr-only\">Next</span>\r\n		</a>\r\n	</div>\r\n</div>		', 'Slide'),
+(7, '<div class=\"row\">\r\n    <div class=\"section-title\">\r\n        <h2>Новости</h2>\r\n    </div>\r\n    <div class=\"col-md-12\">\r\n        <div class=\"post post-thumb\">\r\n            <a class=\"post-img\" href=\"#\"><img src=\"./public/images/car-header.jpg\" alt=\"\"></a>\r\n            <div class=\"post-body\">\r\n                <div class=\"post-area\">\r\n                    <div class=\"post-meta\">\r\n                        <a class=\"post-category cat-2\" href=\"#\">BMW</a>\r\n                        <span class=\"post-date\">Март 27, 2018</span>\r\n                    </div>\r\n                    <h3 class=\"post-title\">Поступление новых моделей BMW-6 серии</h3>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-md-6\">\r\n        <div class=\"post\">\r\n            <a class=\"post-img\" href=\"#\"><img src=\"./public/images/car-header.jpg\" alt=\"\"></a>\r\n            <div class=\"post-body\">\r\n                <div class=\"post-meta\">\r\n                    <a class=\"post-category cat-2\" href=\"#\">RIO</a>\r\n                    <span class=\"post-date\">Март 26, 2018</span>\r\n                </div>\r\n                <h3 class=\"post-title\">Последние дни скидок на серию RIO - Fly</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-md-6\">\r\n        <div class=\"post\">\r\n            <a class=\"post-img\" href=\"#\"><img src=\"./public/images/car-header.jpg\" alt=\"\"></a>\r\n            <div class=\"post-body\">\r\n                <div class=\"post-meta\">\r\n                    <a class=\"post-category cat-2\" href=\"#\">MERCEDES</a>\r\n                    <span class=\"post-date\">Март 25, 2018</span>\r\n                </div>\r\n                <h3 class=\"post-title\">Поступление новых моделей MERCEDES AMG</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"clearfix visible-md visible-lg\"></div>\r\n</div>	', 'News'),
+(8, '<div class=\"row\">\r\n    <div class=\"section-title\">\r\n        <h2>Акции</h2>\r\n    </div>\r\n\r\n    <div class=\"col-md-12\">\r\n        <div class=\"post post-thumb\">\r\n            <a class=\"post-img\" href=\"#\"><img src=\"./public/images/car-header.jpg\" alt=\"\"></a>\r\n            <div class=\"post-body\">\r\n                <div class=\"post-area\">\r\n                    <div class=\"post-meta\">\r\n                        <a class=\"post-category cat-5 old-cost\" href=\"#\">190000 руб.</a>\r\n                        <span class=\"post-date\">150000 руб.</span>\r\n                    </div>\r\n                    <h3 class=\"post-title\">BMW-6</h3>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-md-6\">\r\n        <div class=\"post\">\r\n            <a class=\"post-img\" href=\"#\"><img src=\"./public/images/car-header.jpg\" alt=\"\"></a>\r\n            <div class=\"post-body\">\r\n                <div class=\"post-meta\">\r\n                    <a class=\"post-category cat-5 old-cost\" href=\"#\">190000 руб.</a>\r\n                    <span class=\"post-date\">150000 руб.</span>\r\n                </div>\r\n                <h3 class=\"post-title\">BMW-2x</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-md-6\">\r\n        <div class=\"post\">\r\n            <a class=\"post-img\" href=\"#\"><img src=\"./public/images/car-header.jpg\" alt=\"\"></a>\r\n            <div class=\"post-body\">\r\n                <div class=\"post-meta\">\r\n                    <a class=\"post-category cat-5 old-cost\" href=\"#\">170000 руб.</a>\r\n                    <span class=\"post-date\">135000 руб.</span>\r\n                </div>\r\n                <h3 class=\"post-title\">BMW-1x</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"clearfix visible-md visible-lg\"></div>\r\n</div>		', 'Discount');
 
 -- --------------------------------------------------------
 
@@ -179,9 +191,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `surname`, `name`, `patr`, `phone`, `dateTestDrive`, `carId`, `status`) VALUES
-(1, 'name', 'name', 'name', '1', '2019-02-04 18:16:00', 3, 3),
-(2, 'Захаров', 'Дмитрий', 'Анатольевич', '79789429067', '2019-02-07 21:02:00', 6, 1),
-(3, 'Захаров', 'Дмитрий', 'Анатольевич', '79780349012', '2019-02-27 23:55:00', 6, 1);
+(3, 'Киселёв', 'Вадим', 'Дмитриевич', '79780349012', '2019-02-27 23:55:00', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -304,7 +314,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT для таблицы `auth`
 --
 ALTER TABLE `auth`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT для таблицы `body`
@@ -328,7 +338,7 @@ ALTER TABLE `car_picture`
 -- AUTO_INCREMENT для таблицы `content`
 --
 ALTER TABLE `content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `mark`

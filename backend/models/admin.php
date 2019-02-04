@@ -5,7 +5,8 @@ class Admin extends db
     function isAdmin($email, $password)
     {
         $conn = $this->connect();
-        $query = $conn->prepare("SELECT * FROM `ADMIN` WHERE email = '" . $email . "' AND password = '" . $password . "' AND dostup > 0");
+//      $query = $conn->prepare("SELECT * FROM `ADMIN` WHERE email = '" . $email . "' AND password = '" . $password . "' AND dostup > 0");
+        $query = $conn->prepare("SELECT * FROM `ADMIN` WHERE email = '" . $email . "' AND password = '" . md5($password) . "' AND dostup > 0");
         $query->execute();
         $query->store_result();
         $rows = $query->num_rows;
@@ -19,18 +20,18 @@ class Admin extends db
         $conn = $this->connect();
         $conn->set_charset('utf8');
 
-        if (!($query = $conn->prepare("SELECT `surname`,`name`,`patr`,`email`,`dostup` FROM `ADMIN` WHERE id = " . $adminId))) {
+        if (!($query = $conn->prepare("SELECT `id`,`surname`,`name`,`patr`,`email`,`dostup` FROM `ADMIN` WHERE id = " . $adminId))) {
             echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
         }
 
         $query->execute();
         $query->store_result();
-        $query->bind_result($surname, $name, $patr, $email, $dostup);
+        $query->bind_result($id, $surname, $name, $patr, $email, $dostup);
 
         while ($query->fetch()) {
         }
 
-        $object = array('surname' => $surname, 'name' => $name, 'patr' => $patr, 'email' => $email, 'dostup' => $dostup);
+        $object = array('id' => $id, 'surname' => $surname, 'name' => $name, 'patr' => $patr, 'email' => $email, 'dostup' => $dostup);
         return json_encode($object);
     }
 
@@ -59,14 +60,17 @@ class Admin extends db
     function isAdminCookie($adminId)
     {
         $conn = $this->connect();
-        if (!($query = $conn->prepare("SELECT * FROM `auth` WHERE adminId = '" . $adminId . "'"))) {
+
+        if (!($query = $conn->prepare("SELECT * FROM `auth` WHERE adminId = " . $adminId))) {
             echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
         }
 
         $query->execute();
         $query->store_result();
+
+        $count = $query->num_rows;
         $query->close();
-        return $query->num_rows;
+        return $count;
     }
 
     function deleteAdminCookie($adminId)
@@ -98,6 +102,19 @@ class Admin extends db
             $this->deleteAdminCookie($adminId);
             $this->addAdminCookie($adminId, $hash);
         }
+    }
+
+    function changePassword($id, $password)
+    {
+        $conn = $this->connect();
+        $conn->set_charset('utf8');
+
+        if (!($query = $conn->prepare('UPDATE `Admin` SET password = "' . md5($password) . '" WHERE id = "' . $id . '"'))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+
+        $query->execute();
+        $query->close();
     }
 
     function setCookieAdmin($email)

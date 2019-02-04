@@ -18,6 +18,7 @@ class Index
     {
         $db = new Admin();
         $isAdmin = $db->isAdmin($_POST['email'], $_POST['password']);
+
         if ($isAdmin == true) {
             $db->setCookieAdmin($_POST['email']);
             header('Location: /admin/main');
@@ -36,9 +37,7 @@ class Index
             $admin = new Admin();
             $adminData = $admin->findAdminByCookie($_COOKIE["code"]);
 
-            if (!$adminData) {
-                return false;
-            }
+            if (!$adminData) return false;
             return true;
         }
     }

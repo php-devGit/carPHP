@@ -6,7 +6,9 @@
 </head>
 <body id="page-top" onload="menuConstructor();">
 <?php include 'partial/menu.php' ?>
-<?php include 'partial/slider.php'; ?>
+<div class="container h-95">
+    <?php echo $textSlide; ?>
+</div>
 <?php include 'partial/footer.php'; ?>
 </body>
 </html>

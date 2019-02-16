@@ -44,7 +44,8 @@
                     <div class="form-group">
                         <label for="phone" class="field">Контактный телефон</label>
                         <input required type="text" class="form-control" id="phone"
-                               placeholder="Введите ваш контактный телефон" name="phone">
+                               placeholder="Введите ваш контактный телефон" name="phone"
+                               onkeyup="validatePhone(this.id);">
                     </div>
                 </div>
 
@@ -72,7 +73,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary mt-2">Подать заявку</button>
+            <button type="submit" id="btnSendTest" class="btn btn-primary mt-2">Подать заявку</button>
         </form>
     </div>
 </div>

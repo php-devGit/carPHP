@@ -82,3 +82,19 @@ let loadPageAnchor = () => {
     menuConstructor();
     movedToSection();
 };
+
+function validatePhone(inputPhone) {
+    let field = document.getElementById(inputPhone);
+    let btn = document.getElementById("btnSendTest");
+    let filter = /^[0-9-+]+$/;
+
+    if (filter.test(field.value) && field.value.length > 10) {
+        btn.removeAttribute("disabled");
+        field.classList.remove("is-invalid");
+        field.classList.add("is-valid");
+    } else {
+        btn.disabled = "true";
+        field.classList.remove("is-valid");
+        field.classList.add("is-invalid");
+    }
+}

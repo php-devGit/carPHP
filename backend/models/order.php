@@ -70,4 +70,15 @@ class Order extends db
 
         $query->execute();
     }
+
+    function removeOrder($idCar)
+    {
+        $conn = $this->connect();
+        if (!($query = $conn->prepare("DELETE FROM `orders` WHERE carId = " . $idCar))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+
+        $query->execute();
+        $query->close();
+    }
 }

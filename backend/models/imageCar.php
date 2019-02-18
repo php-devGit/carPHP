@@ -18,6 +18,16 @@ class ImageCar extends db
         header('Location: /admin/main');
     }
 
+    function removeImagesCar($idCar)
+    {
+        $conn = $this->connect();
+        if (!($query = $conn->prepare("DELETE FROM `car_picture` WHERE carId = " . $idCar))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+
+        $query->execute();
+        $query->close();
+    }
 
     function getImagesCar($idCar)
     {

@@ -100,6 +100,18 @@ class Main
         $imageCar->addImageCar($_POST["car"], $_POST["image"]);
     }
 
+    function removeCar()
+    {
+        $indexPage = new Index();
+        if ($indexPage->isAuth() != false) {
+            $car = new Car();
+            $car->removeCar($_GET["id"]);
+            header('Location: /admin/main');
+        } else {
+            header('Location: /admin/index');
+        }
+    }
+
     function logout()
     {
         setcookie("code", '', time() - 100, '/');

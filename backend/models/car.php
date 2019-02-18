@@ -1,5 +1,8 @@
 <?php
 
+include_once './models/imageCar.php';
+include_once './models/order.php';
+
 class Car extends db
 {
     function addBody($name)
@@ -113,6 +116,23 @@ class Car extends db
         $conn->set_charset('utf8');
         $q = "INSERT INTO `car` (markId, bodyId, model, cost) VALUES (" . $POST["markId"] . ',' . $POST["bodyId"] . ',"' . $POST["name"] . '",' . $POST["cost"] . ")";
         if (!($query = $conn->prepare($q))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+
+        $query->execute();
+        $query->close();
+    }
+
+    function removeCar($id)
+    {
+        $conn = $this->connect();
+        $imageCar = new ImageCar();
+        $order = new Order();
+
+        $order->removeOrder($id);
+        $imageCar->removeImagesCar($id);
+
+        if (!($query = $conn->prepare("DELETE FROM `car` WHERE id = " . $id))) {
             echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
         }
 

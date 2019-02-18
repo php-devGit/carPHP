@@ -5,7 +5,6 @@ class Admin extends db
     function isAdmin($email, $password)
     {
         $conn = $this->connect();
-//      $query = $conn->prepare("SELECT * FROM `ADMIN` WHERE email = '" . $email . "' AND password = '" . $password . "' AND dostup > 0");
         $query = $conn->prepare("SELECT * FROM `ADMIN` WHERE email = '" . $email . "' AND password = '" . md5($password) . "' AND dostup > 0");
         $query->execute();
         $query->store_result();

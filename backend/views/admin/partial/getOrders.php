@@ -5,6 +5,8 @@
         <div class="list-group">
             <?php
             foreach ($ordersData as $key => $orderData) {
+                $car = $orderData["car"][0];
+
                 echo '<p class="list-group-item c-elements">';
                 echo '<span> id: ' . $orderData["id"] . '</span>';
                 echo '<span> Фамилия: ' . $orderData["surname"] . '</span>';
@@ -12,8 +14,8 @@
                 echo '<span> Отчество: ' . $orderData["patr"] . '</span>';
                 echo '<span> Телефон: ' . $orderData["phone"] . '</span>';
                 echo '<span> Дата и время тест-драйва: ' . $orderData["dateTestDrive"] . '</span>';
-                echo '<span> Марка: ' . $orderData["mark"] . '</span>';
-                echo '<span> Модель: ' . $orderData["model"] . '</span>';
+                echo '<span> Марка: ' . $car["mark"] . '</span>';
+                echo '<span> Модель: ' . $car["model"] . '</span>';
                 echo '<span> Статус: ' . $this->getNameStatus($orderData["status"]) . '</span>';
                 echo '<span style="margin-top: 10px">';
 

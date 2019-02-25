@@ -12,17 +12,24 @@
                 echo '<span> Отчество: ' . $orderData["patr"] . '</span>';
                 echo '<span> Телефон: ' . $orderData["phone"] . '</span>';
                 echo '<span> Дата и время тест-драйва: ' . $orderData["dateTestDrive"] . '</span>';
+                echo '<span> Марка: ' . $orderData["mark"] . '</span>';
+                echo '<span> Модель: ' . $orderData["model"] . '</span>';
                 echo '<span> Статус: ' . $this->getNameStatus($orderData["status"]) . '</span>';
                 echo '<span style="margin-top: 10px">';
 
-                if ($orderData["status"] == 2) {
-                    echo '<a class="btn btn-danger" href="/admin/orders/forbid?id=' . $orderData["id"] . '">Отказать</a>';
-                } else if ($orderData["status"] == 3) {
-                    echo '<a class="btn btn-success" href="/admin/orders/accept?id=' . $orderData["id"] . '">Одобрить</a>';
-                } else {
-                    echo '<a class="btn btn-danger" href="/admin/orders/forbid?id=' . $orderData["id"] . '">Отказать</a>';
-                    echo '<a class="btn btn-success" href="/admin/orders/accept?id=' . $orderData["id"] . '">Одобрить</a>';
+                switch ($orderData["status"]) {
+                    case 1:
+                        echo '<a class="btn btn-danger" href="/admin/orders/forbid?id=' . $orderData["id"] . '">Отказать</a>';
+                        echo '<a class="btn btn-success" href="/admin/orders/accept?id=' . $orderData["id"] . '">Одобрить</a>';
+                        break;
+                    case 2:
+                        echo '<a class="btn btn-danger" href="/admin/orders/forbid?id=' . $orderData["id"] . '">Отказать</a>';
+                        break;
+                    case 3:
+                        echo '<a class="btn btn-success" href="/admin/orders/accept?id=' . $orderData["id"] . '">Одобрить</a>';
+                        break;
                 }
+
                 echo '</span>';
                 echo '</p>';
             }

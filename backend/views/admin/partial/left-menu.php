@@ -11,6 +11,9 @@
                 <a href="/admin/content"><i class="fa fa-file-alt"></i> Контент страниц</a>
             </li>
             <li>
+                <a href="/admin/discountsNews"><i class="fa fa-cogs"></i> Новости и акции</a>
+            </li>
+            <li>
                 <a href="/admin/settings"><i class="fa fa-cogs"></i> Настройки аккаунта</a>
             </li>
             <?php

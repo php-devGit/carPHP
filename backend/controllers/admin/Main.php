@@ -53,6 +53,30 @@ class Main
         }
     }
 
+    function removeBody()
+    {
+        $indexPage = new Index();
+        if ($indexPage->isAuth() != false) {
+            $car = new Car();
+            $car->removeBody($_POST["bodyId"]);
+            header('Location: /admin/main#success=true');
+        } else {
+            header('Location: /admin/index');
+        }
+    }
+
+    function removeMark()
+    {
+        $indexPage = new Index();
+        if ($indexPage->isAuth() != false) {
+            $car = new Car();
+            $car->removeMark($_POST["markId"]);
+            header('Location: /admin/main#success=true');
+        } else {
+            header('Location: /admin/index');
+        }
+    }
+
     function updateMark()
     {
         $indexPage = new Index();

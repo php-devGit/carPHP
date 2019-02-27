@@ -69,6 +69,50 @@ class Car extends db
         return $body;
     }
 
+    function removeBody($id)
+    {
+        $conn = $this->connect();
+
+        $carsId = $this->getCarsByBody($id);
+
+        $imageCar = new ImageCar();
+        $order = new Order();
+
+        foreach ($carsId as $carId) {
+            $order->removeOrder($carId);
+            $imageCar->removeImagesCar($carId);
+            $this->removeCar($carId);
+        }
+
+        if (!($query = $conn->prepare("DELETE FROM `body` WHERE id = " . $id))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+        $query->execute();
+        $query->close();
+    }
+
+    function removeMark($id)
+    {
+        $conn = $this->connect();
+
+        $carsId = $this->getCarsByMark($id);
+
+        $imageCar = new ImageCar();
+        $order = new Order();
+
+        foreach ($carsId as $carId) {
+            $order->removeOrder($carId);
+            $imageCar->removeImagesCar($carId);
+            $this->removeCar($carId);
+        }
+
+        if (!($query = $conn->prepare("DELETE FROM `mark` WHERE id = " . $id))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+        $query->execute();
+        $query->close();
+    }
+
     function addMark($name)
     {
         $conn = $this->connect();
@@ -189,6 +233,46 @@ class Car extends db
 
         $query->close();
         return $cars;
+    }
+
+    function getCarsByBody($bodyId)
+    {
+        $conn = $this->connect();
+        $conn->set_charset('utf8');
+        $carsId = [];
+
+        if (!($query = $conn->prepare("SELECT `id` FROM `car` WHERE bodyId = " . $bodyId))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+        $query->execute();
+        $query->bind_result($id);
+
+        while ($query->fetch()) {
+            array_push($carsId, $id);
+        }
+
+        $query->close();
+        return $carsId;
+    }
+
+    function getCarsByMark($markId)
+    {
+        $conn = $this->connect();
+        $conn->set_charset('utf8');
+        $carsId = [];
+
+        if (!($query = $conn->prepare("SELECT `id` FROM `car` WHERE markId = " . $markId))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+        $query->execute();
+        $query->bind_result($id);
+
+        while ($query->fetch()) {
+            array_push($carsId, $id);
+        }
+
+        $query->close();
+        return $carsId;
     }
 
     function getCars()

@@ -51,7 +51,35 @@
             <div class="control-group">
                 <label></label>
                 <div class="controls">
-                    <button type="submit" class="btn btn-primary">Создать</button>
+                    <button type="submit" class="btn btn-primary">Обновить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <i class="fa fa-wrench pull-right"></i>
+            <h4>Удаление типа кузова</h4>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form class="form form-vertical" method="post" action="/admin/main/removeBody">
+            <div class="controls">
+                <label for="body">Выберите тип кузова</label>
+                <select class="form-control" name="bodyId" id="body">
+                    <?php
+                    foreach ($bodies as $key => $body) {
+                        echo '<option id="' . $key . '" name="' . $key . '" value="' . $key . '">' . $body . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="control-group">
+                <label></label>
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary">Удалить</button>
                 </div>
             </div>
         </form>

@@ -20,7 +20,7 @@
             <div class="control-group">
                 <div class="controls">
                     <label for="image">Выберите изображение:</label>
-                    <select class="form-control" name="image" id="image">
+                    <select class="form-control" name="image[]" multiple="multiple" id="image">
                         <?php
                         foreach ($images as $image) {
                             echo '<option value="' . $image["id"] . '">' . $image["name"] . '</option>';

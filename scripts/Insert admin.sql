@@ -1,1 +1,0 @@
-INSERT INTO ADMIN (id, surname, name, patr, email, dostup, password) VALUES(1, "Админ", "для", "отладки", "mail@mailforspam.com", 4, "");

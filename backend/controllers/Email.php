@@ -16,7 +16,7 @@ class Email
         $mail = new PHPMailer(true);
         try {
             //Server settings
-            $mail->SMTPDebug = 2;
+            //$mail->SMTPDebug = 2;
             $mail->CharSet = "utf-8";
             $mail->isSMTP();
             $mail->Host = 'smtp.mail.ru';

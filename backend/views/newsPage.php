@@ -35,7 +35,8 @@
                     echo '</a>';
                     echo '<div class="post-body">';
                     echo '<div class="post-area">';
-                    echo '<h3 class="post-title">' . $info["info"] . '</h3>';
+                    echo '<h3 class="post-title">' . $info["title"] . '</h3>';
+                    echo '<p class="post-text">' . $info["info"] . '</p>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';

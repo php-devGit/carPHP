@@ -14,6 +14,7 @@ class Content
             $content = new Contents();
 
             $adminData = json_decode($admin->findAdminByCookie($_COOKIE["code"]));
+
             $aboutContent = $content->getContent('About');
             $aboutMarksContent = $content->getContent('AboutMark');
             $textSlide = $content->getContent('Slide');
@@ -30,6 +31,7 @@ class Content
         if ($indexPage->isAuth() != false) {
             $content = new Contents();
             $content->updateOrInsert($_POST['about'], 'About');
+
             header('Location: /admin/content#success=true');
         } else {
             header('Location: /admin/index');
@@ -42,6 +44,7 @@ class Content
         if ($indexPage->isAuth() != false) {
             $content = new Contents();
             $content->updateOrInsert($_POST['textSlide'], 'Slide');
+
             header('Location: /admin/content#success=true');
         } else {
             header('Location: /admin/index');
@@ -54,6 +57,7 @@ class Content
         if ($indexPage->isAuth() != false) {
             $content = new Contents();
             $content->updateOrInsert($_POST['aboutMark'], 'AboutMark');
+
             header('Location: /admin/content#success=true');
         } else {
             header('Location: /admin/index');

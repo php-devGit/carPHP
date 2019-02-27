@@ -22,9 +22,14 @@
                     <div class="panel-body">
                         <form class="form form-vertical" method="post" action="/admin/discountsNews/addNews">
                             <div class="control-group">
-                                <label>Введите новость:</label>
+                                <label for="title">Введите заголовок:</label>
+                                <input class="form-control" name="title" id="title"/>
+                            </div>
+                            <div class="control-group">
+                                <label for="info">Введите описание:</label>
                                 <textarea class="form-control" name="info" id="info"></textarea>
                             </div>
+
                             <div class="control-group">
                                 <label>Выберите изображение:</label>
                                 <select class="form-control" name="image" id="image">

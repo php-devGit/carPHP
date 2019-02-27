@@ -11,14 +11,15 @@ class DiscountsNews
     {
         $indexPage = new Index();
         if ($indexPage->isAuth() != false) {
-            $admin = new Admin();
             $car = new Car();
+            $admin = new Admin();
             $image = new Image();
 
             $adminData = json_decode($admin->findAdminByCookie($_COOKIE["code"]));
-            $bodies = $car->getBodies();
-            $marks = $car->getMarks();
+
             $cars = $car->getCars();
+            $marks = $car->getMarks();
+            $bodies = $car->getBodies();
             $images = $image->getImages();
 
             include(dirname(__FILE__) . '\..\..\views\admin\discountsNews.php');
@@ -33,6 +34,7 @@ class DiscountsNews
         if ($indexPage->isAuth() != false) {
             $discounts = new Discount();
             $discounts->addDiscount($_POST["discount"], $_POST["car"]);
+
             header('Location: /admin/main#success=true');
         } else {
             header('Location: /admin/index');
@@ -44,7 +46,7 @@ class DiscountsNews
         $indexPage = new Index();
         if ($indexPage->isAuth() != false) {
             $news = new NewsModel();
-            $news->addNews($_POST["info"], $_POST["image"]);
+            $news->addNews($_POST["title"], $_POST["info"], $_POST["image"]);
 
             header('Location: /admin/main#success=true');
         } else {

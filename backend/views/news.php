@@ -15,6 +15,7 @@
                 <div class="section-title">
                     <h2>Новости</h2>
                 </div>
+
                 <?php
                 foreach ($newsInfo as $key => $info) {
                     echo $key == 0 ? '<div class="col-md-12"><div class="post post-thumb">' : '<div class="post post-thumb"><div class="post">';

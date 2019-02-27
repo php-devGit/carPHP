@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>Прикрепить картинку к автомобилю</h4>
+        <h4>Прикрепить изображение к автомобилю</h4>
     </div>
     <div class="panel-body">
         <form class="form form-vertical" method="post" action="/admin/main/attachImageCar">

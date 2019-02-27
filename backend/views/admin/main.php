@@ -15,14 +15,17 @@
         <div class="col-sm-9">
             <div class="row">
                 <div class="col-md-6">
-                    <?php include 'partial/attachPictureCar.php' ?>
                     <?php include 'partial/createMark.php'; ?>
+                    <hr/>
+                    <?php include 'partial/createCar.php'; ?>
                     <?php include 'partial/viewCars.php'; ?>
                 </div>
                 <div class="col-md-6">
                     <?php include 'partial/createBody.php'; ?>
-                    <?php include 'partial/createCar.php'; ?>
+                    <hr/>
                     <?php include 'partial/uploadImage.php'; ?>
+                    <hr/>
+                    <?php include 'partial/attachPictureCar.php' ?>
                 </div>
             </div>
             <hr>

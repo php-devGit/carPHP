@@ -17,6 +17,18 @@ class Car extends db
         $query->close();
     }
 
+    function updateBody($id, $body)
+    {
+        $conn = $this->connect();
+        $conn->set_charset('utf8');
+
+        if (!($query = $conn->prepare('UPDATE `body` SET name = "' . $body . '" WHERE id = "' . $id . '"'))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+        $query->execute();
+        $query->close();
+    }
+
     function getBodies()
     {
         $conn = $this->connect();
@@ -68,6 +80,19 @@ class Car extends db
         $query->execute();
         $query->close();
     }
+
+    function updateMark($id, $mark)
+    {
+        $conn = $this->connect();
+        $conn->set_charset('utf8');
+
+        if (!($query = $conn->prepare('UPDATE `mark` SET name = "' . $mark . '" WHERE id = "' . $id . '"'))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+        $query->execute();
+        $query->close();
+    }
+
 
     function getMarks()
     {

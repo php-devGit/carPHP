@@ -24,7 +24,7 @@ class Index
             header('Location: /admin/main');
             die();
         } else {
-            header('Location: /admin/index#?success=false');
+            header('Location: /admin/index#success=false');
             die();
         }
     }

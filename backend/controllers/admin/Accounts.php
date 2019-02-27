@@ -15,7 +15,7 @@ class Accounts
             if ($adminData->dostup == 4) {
                 include(dirname(__FILE__) . '\..\..\views\admin\accounts.php');
             } else {
-                header('Location: /admin/main#?success=true');
+                header('Location: /admin/main#success=true');
             }
         } else {
             header('Location: /admin/index');
@@ -31,12 +31,12 @@ class Accounts
             $adminData = json_decode($admin->findAdminByCookie($_COOKIE["code"]));
             if ($adminData->dostup == 4) {
                 $admin->addAdmin($_POST["surname"], $_POST["name"], $_POST["patr"], $_POST["email"], $_POST["password"], $_POST["dostup"]);
-                header('Location: /admin/accounts#?success=true');
+                header('Location: /admin/accounts#success=true');
             } else {
-                header('Location: /admin/main#?success=false');
+                header('Location: /admin/main#success=false');
             }
         } else {
-            header('Location: /admin/index#?success=false');
+            header('Location: /admin/index#success=false');
         }
     }
 }

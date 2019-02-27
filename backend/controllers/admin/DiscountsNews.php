@@ -33,7 +33,7 @@ class DiscountsNews
         if ($indexPage->isAuth() != false) {
             $discounts = new Discount();
             $discounts->addDiscount($_POST["discount"], $_POST["car"]);
-            header('Location: /admin/main');
+            header('Location: /admin/main#success=true');
         } else {
             header('Location: /admin/index');
         }
@@ -46,7 +46,7 @@ class DiscountsNews
             $news = new NewsModel();
             $news->addNews($_POST["info"], $_POST["image"]);
 
-            header('Location: /admin/main');
+            header('Location: /admin/main#success=true');
         } else {
             header('Location: /admin/index');
         }

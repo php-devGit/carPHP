@@ -24,9 +24,9 @@ class Settings
             $admin = new Admin();
             $adminData = json_decode($admin->findAdminByCookie($_COOKIE["code"]));
             $admin->changePassword($adminData->id, $_POST["password"]);
-            header('Location: /admin/settings#?success=true');
+            header('Location: /admin/settings#success=true');
         } else {
-            header('Location: /admin/settings#?success=false');
+            header('Location: /admin/settings#success=false');
         }
     }
 }

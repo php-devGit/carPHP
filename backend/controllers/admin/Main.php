@@ -35,7 +35,32 @@ class Main
         if ($indexPage->isAuth() != false) {
             $car = new Car();
             $car->addBody($_POST["name"]);
-            header('Location: /admin/main');
+            header('Location: /admin/main#success=true');
+        } else {
+            header('Location: /admin/index');
+        }
+    }
+
+    function updateBody()
+    {
+        $indexPage = new Index();
+        if ($indexPage->isAuth() != false) {
+            $car = new Car();
+            $car->updateBody($_POST["bodyId"], $_POST["name"]);
+            header('Location: /admin/main#success=true');
+        } else {
+            header('Location: /admin/index');
+        }
+    }
+
+    function updateMark()
+    {
+        $indexPage = new Index();
+        if ($indexPage->isAuth() != false) {
+            $car = new Car();
+            $car->updateMark($_POST["markId"], $_POST["name"]);
+
+            header('Location: /admin/main#success=true');
         } else {
             header('Location: /admin/index');
         }
@@ -47,7 +72,7 @@ class Main
         if ($indexPage->isAuth() != false) {
             $car = new Car();
             $car->addMark($_POST["name"]);
-            header('Location: /admin/main');
+            header('Location: /admin/main#success=true');
         } else {
             header('Location: /admin/index');
         }
@@ -59,7 +84,7 @@ class Main
         if ($indexPage->isAuth() != false) {
             $car = new Car();
             $car->addCar($_POST);
-            header('Location: /admin/main');
+            header('Location: /admin/main#success=true');
         } else {
             header('Location: /admin/index');
         }
@@ -76,7 +101,7 @@ class Main
 
             if (move_uploaded_file($_FILES['image']['tmp_name'][$key], $uploadfile)) {
                 $image->addImage(basename($name));
-                header('Location: /admin/main#?success=true');
+                header('Location: /admin/main#success=true');
             }
         }
     }
@@ -95,7 +120,7 @@ class Main
         if ($indexPage->isAuth() != false) {
             $car = new Car();
             $car->removeCar($_GET["id"]);
-            header('Location: /admin/main');
+            header('Location: /admin/main#success=true');
         } else {
             header('Location: /admin/index');
         }
@@ -104,6 +129,6 @@ class Main
     function logout()
     {
         setcookie("code", '', time() - 100, '/');
-        header('Location: /admin/index');
+        header('Location: /admin/index#success=true');
     }
 }

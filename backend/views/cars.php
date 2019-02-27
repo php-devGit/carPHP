@@ -28,24 +28,23 @@
             echo '</div>';
             echo '<div class="modal-body">';
 
-            echo '<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">';
+            echo '<div id="car' . $car["id"] . '" class="carousel slide" data-ride="carousel">';
             echo '<div class="carousel-inner">';
 
             $imagesCar = $imageCar->getImagesCar($car["id"]);
 
             foreach ($imagesCar as $key => $imageId) {
-                if ($key == 0) echo '<div class="carousel-item active">';
-                if ($key != 0) echo '<div class="carousel-item">';
+                echo $key == 0 ? '<div class="carousel-item active">' : '<div class="carousel-item">';
                 echo '<img class="d-block w-100" src="./public/images/' . $image->getImageById($imageId) . '">';
                 echo '</div>';
             }
 
             echo '</div>';
-            echo '<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">';
+            echo '<a class="carousel-control-prev" href="#car' . $car["id"] . '" role="button" data-slide="prev">';
             echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
             echo '<span class="sr-only">Назад</span>';
             echo '</a>';
-            echo '<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">';
+            echo '<a class="carousel-control-next" href="#car' . $car["id"] . '" role="button" data-slide="next">';
             echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
             echo '<span class="sr-only">Далее</span>';
             echo '</a>';

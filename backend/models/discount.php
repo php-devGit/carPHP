@@ -17,8 +17,6 @@ class Discount extends db
             echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
         }
 
-        var_dump($query);
-
         $query->execute();
         $query->close();
     }
@@ -45,6 +43,38 @@ class Discount extends db
             array_push($discounts,
                 array(
                     'id' => $id,
+                    'discount' => $discount,
+                    'idCar' => $idCar,
+                    'image' => $image->getImageById($arrIdPictures)
+                )
+            );
+        }
+
+        $query->close();
+        return $discounts;
+    }
+
+    function getDiscount($id)
+    {
+        $conn = $this->connect();
+        $conn->set_charset('utf8');
+
+        $image = new Image();
+        $imageCar = new ImageCar();
+
+        $discounts = [];
+
+        if (!($query = $conn->prepare("SELECT `discount`,`idCar` FROM `Discounts` where id = " . $id))) {
+            echo "Не удалось подготовить запрос: (" . $conn->errno . ") " . $conn->error;
+        }
+
+        $query->execute();
+        $query->bind_result($discount, $idCar);
+
+        while ($query->fetch()) {
+            $arrIdPictures = $imageCar->getImagesCar($idCar)[0];
+            array_push($discounts,
+                array(
                     'discount' => $discount,
                     'idCar' => $idCar,
                     'image' => $image->getImageById($arrIdPictures)

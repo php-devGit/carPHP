@@ -21,6 +21,16 @@ class News
 
     function getDiscountPage()
     {
+        if (isset($_GET["id"])) {
+            $car = new Car();
+            $discount = new Discount();
 
+            $discountInfo = $discount->getDiscount($_GET["id"]);
+            $carInfo = $car->getCarById($discountInfo[0]["idCar"]);
+
+            include(dirname(__FILE__) . '\..\views\discountPage.php');
+        } else {
+            header("Location: /");
+        }
     }
 }

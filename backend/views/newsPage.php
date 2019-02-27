@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Акция от Starcars</title>
+    <title>Новости от Starcars</title>
     <link href="./../public/css/style.css" rel="stylesheet" type="text/css">
     <link href="./../public/css/lib/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="./../public/css/lib/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css">
@@ -24,30 +24,24 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="section-title">
-                    <h2>Акция №<?php echo $_GET["id"] ?> </h2>
+                    <h2>Новость №<?php echo $_GET["id"] ?> </h2>
                 </div>
 
                 <?php
-                $newCost = $carInfo[0]["cost"] - $carInfo[0]["cost"] * ($discountInfo[0]["discount"] / 100);
-
-                echo '<div class="col-md-12"><div class="post post-thumb">';
-                echo '<a class="post-img" href="#">';
-                echo '<img src="./../public/images/' . $discountInfo[0]["image"] . '" alt="">';
-                echo '</a>';
-                echo '<div class="post-body">';
-                echo '<div class="post-area">';
-                echo '<div class="post-meta">';
-                echo '<a class="post-category cat-5 old-cost" href="#">' . $carInfo[0]["cost"] . ' EUR.</a>';
-                echo '<span class="post-date">' . $newCost . ' EUR. (<i>' . $discountInfo[0]["discount"] . '%</i>)</span>';
-                echo '</div>';
-                echo '<h3 class="post-title">' . $carInfo[0]["mark"] . ' ' . $carInfo[0]["model"] . '</h3>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-
+                foreach ($newsInfo as $key => $info) {
+                    echo '<div class="col-md-12"><div class="post post-thumb">';
+                    echo '<a class="post-img" href="#">';
+                    echo '<img src="./../public/images/' . $info["image"] . '" alt="">';
+                    echo '</a>';
+                    echo '<div class="post-body">';
+                    echo '<div class="post-area">';
+                    echo '<h3 class="post-title">' . $info["info"] . '</h3>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
                 ?>
-
                 <div class="clearfix visible-md visible-lg"></div>
             </div>
         </div>

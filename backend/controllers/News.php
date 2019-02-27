@@ -2,6 +2,7 @@
 
 include_once './models/car.php';
 include_once './models/discount.php';
+include_once './models/news.php';
 
 class News
 {
@@ -9,14 +10,24 @@ class News
     {
         $car = new Car();
         $discount = new Discount();
-        $discounts = $discount->getDiscounts();
+        $news = new NewsModel();
+
+        $newsInfo = $news->getNews();
+        $discountsInfo = $discount->getDiscounts();
 
         include(dirname(__FILE__) . '\..\views\news.php');
     }
 
     function getNewsPage()
     {
+        if (isset($_GET["id"])) {
+            $news = new NewsModel();
+            $newsInfo = $news->getNewsById($_GET["id"]);
 
+            include(dirname(__FILE__) . '\..\views\newsPage.php');
+        } else {
+            header("Location: /");
+        }
     }
 
     function getDiscountPage()

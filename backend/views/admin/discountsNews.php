@@ -25,6 +25,16 @@
                                 <label>Введите новость:</label>
                                 <textarea class="form-control" name="info" id="info"></textarea>
                             </div>
+                            <div class="control-group">
+                                <label>Выберите изображение:</label>
+                                <select class="form-control" name="image" id="image">
+                                    <?php
+                                    foreach ($images as $image) {
+                                        echo '<option value="' . $image["id"] . '">' . $image["name"] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
 
                             <div class="control-group">
                                 <label></label>

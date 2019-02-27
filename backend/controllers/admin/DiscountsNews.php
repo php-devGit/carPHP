@@ -2,6 +2,7 @@
 
 include_once './controllers/admin/index.php';
 include_once './models/discount.php';
+include_once './models/news.php';
 include_once './models/admin.php';
 
 class DiscountsNews
@@ -32,6 +33,19 @@ class DiscountsNews
         if ($indexPage->isAuth() != false) {
             $discounts = new Discount();
             $discounts->addDiscount($_POST["discount"], $_POST["car"]);
+            header('Location: /admin/main');
+        } else {
+            header('Location: /admin/index');
+        }
+    }
+
+    function addNews()
+    {
+        $indexPage = new Index();
+        if ($indexPage->isAuth() != false) {
+            $news = new NewsModel();
+            $news->addNews($_POST["info"], $_POST["image"]);
+
             header('Location: /admin/main');
         } else {
             header('Location: /admin/index');
